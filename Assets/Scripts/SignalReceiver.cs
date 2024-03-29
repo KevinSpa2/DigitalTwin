@@ -5,84 +5,84 @@ using UnityEngine;
 
 public class SignalReceiver : MonoBehaviour
 {
-    public GameObject capsule; 
-    private WarehouseController warehouseController;
+    public WarehouseController warehouseController;
 
-private void Start()
-{
-    // Find or reference the M2MqttUnityClient script
-    M2MqttUnityClient mqttClient = FindObjectOfType<M2MqttUnityClient>();
-
-    warehouseController = FindObjectOfType<WarehouseController>();
-
-    // Subscribe to the MessageReceived event
-    if (mqttClient != null)
+    private void Start()
     {
-        mqttClient.MessageReceived += OnMessageReceived;
+        M2MqttUnityClient mqttClient = FindObjectOfType<M2MqttUnityClient>();
+
+        warehouseController = FindObjectOfType<WarehouseController>();
+
+        if (mqttClient != null)
+        {
+            mqttClient.MessageReceived += OnMessageReceived;
+        }
+
+        if (warehouseController != null)
+        {
+            Debug.Log("WarehouseController script gevonden: " + warehouseController.name);
+        }
+        else
+        {
+            Debug.LogWarning("WarehouseController script niet gevonden!");
+        }
     }
 
-    if (warehouseController != null)
-    {
-        Debug.Log("MoveXPosition script found: " + warehouseController.name);
-    }
-    else
-    {
-        Debug.LogWarning("MoveXPosition script not found!");
-    }
-}
-
-
-    // Handle the received signals
     private void OnMessageReceived(string topic, byte[] message)
     {
-        // Parse the received JSON message
         string jsonString = System.Text.Encoding.UTF8.GetString(message);
         MessageData data = JsonUtility.FromJson<MessageData>(jsonString);
-        
-        // Check if the received signal contains valid data
+
         if (data != null)
         {
             if (topic == "position")
             {
-                if (data.move == "A1")
+                float zPosition;
+                // Check if incomming data is numeric
+                if (float.TryParse(data.move, out zPosition))
                 {
                     if (warehouseController != null)
                     {
-                        warehouseController.MoveObjectsToTargetsA();
+                        zPosition = Mathf.Clamp(zPosition, 0f, 2200f);
+                        warehouseController.MoveObjectsToTargets(zPosition);
                     }
                 }
-                else if (data.move == "B1")
+                else
                 {
-                    if (warehouseController != null)
+                    switch (data.move)
                     {
-                        warehouseController.MoveObjectsToTargetsB();
+                        case "A1":
+                            zPosition = 810f; 
+                            break;
+                        case "B1":
+                            zPosition = 1455f; 
+                            break;
+                        case "C1":
+                            zPosition = 2100f; 
+                            break;
+                        case "base":
+                            zPosition = 0f; 
+                            break;
+                        default:
+                            zPosition = 0f; 
+                            break;
                     }
-                }
-                else if (data.move == "C1")
-                {
+
                     if (warehouseController != null)
                     {
-                        warehouseController.MoveObjectsToTargetsC();
-                    }
-                }
-                else if (data.move == "base")
-                {
-                    if (warehouseController != null)
-                    {
-                        warehouseController.MoveObjectsToTargetsBase();
+                        warehouseController.MoveObjectsToTargets(zPosition);
                     }
                 }
             }
         }
         else
         {
-            Debug.LogWarning("Received invalid message data");
+            Debug.LogWarning("Ontvangen ongeldige berichtgegevens");
         }
     }
 
     private void OnDestroy()
     {
-        // Unsubscribe from the event when the GameObject is destroyed
         M2MqttUnityClient mqttClient = FindObjectOfType<M2MqttUnityClient>();
         if (mqttClient != null)
         {

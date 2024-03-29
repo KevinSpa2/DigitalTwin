@@ -7,32 +7,31 @@ public class WarehouseController : MonoBehaviour
     public Transform ausleger;
     public Transform greifer;
 
-    public float moveSpeed = 1.0f; 
+    public float moveSpeed = 1.0f;
+
+    public float minZPosition = 0f;
+    public float maxZPosition = 2200f;
+
+    public float minTurmPosition = 37.03607f;
+    public float maxTurmPosition = 67.64607f;
+
+    public float minAuslegerPosition = 34.17f;
+    public float maxAuslegerPosition = 64.78f;
+
+    public float minGreiferPosition = 29.43f;
+    public float maxGreiferPosition = 60.04f;
 
     private bool isMoving = false; // Indicate if movement is in progress
 
-    // Target positions for objects
-    public float turmTargetA = 48.28607f;
-    public float auslegerTargetA = 45.42f;
-    public float greiferTargetA = 40.68f;
-
-    public float turmTargetB = 57.36607f;
-    public float auslegerTargetB = 54.5f;
-    public float greiferTargetB = 49.76f;
-
-    public float turmTargetC = 66.35f;
-    public float auslegerTargetC = 63.48393f;
-    public float greiferTargetC = 58.74393f;
-
-    public float turmTargetBase = 37.03607f;
-    public float auslegerTargetBase = 34.17f;
-    public float greiferTargetBase = 29.43f;
-
-    // Move objects to specified positions
-    public void MoveObjectsToTargets(float turmTarget, float auslegerTarget, float greiferTarget)
+    // Move objects to specified positions within the range of 0 to 2200
+    public void MoveObjectsToTargets(float zPosition)
     {
         if (!isMoving)
         {
+            float turmTarget = Map(zPosition, minZPosition, maxZPosition, minTurmPosition, maxTurmPosition);
+            float auslegerTarget = Map(zPosition, minZPosition, maxZPosition, minAuslegerPosition, maxAuslegerPosition);
+            float greiferTarget = Map(zPosition, minZPosition, maxZPosition, minGreiferPosition, maxGreiferPosition);
+
             StartCoroutine(MoveCoroutine(turm, turmTarget));
             StartCoroutine(MoveCoroutine(ausleger, auslegerTarget));
             StartCoroutine(MoveCoroutine(greifer, greiferTarget));
@@ -56,24 +55,8 @@ public class WarehouseController : MonoBehaviour
         isMoving = false;
     }
 
-    // Moving objects to different targets
-    public void MoveObjectsToTargetsA()
+    private float Map(float value, float fromLow, float fromHigh, float toLow, float toHigh)
     {
-        MoveObjectsToTargets(turmTargetA, auslegerTargetA, greiferTargetA);
-    }
-
-    public void MoveObjectsToTargetsB()
-    {
-        MoveObjectsToTargets(turmTargetB, auslegerTargetB, greiferTargetB);
-    }
-
-    public void MoveObjectsToTargetsC()
-    {
-        MoveObjectsToTargets(turmTargetC, auslegerTargetC, greiferTargetC);
-    }
-
-    public void MoveObjectsToTargetsBase()
-    {
-        MoveObjectsToTargets(turmTargetBase, auslegerTargetBase, greiferTargetBase);
+        return (value - fromLow) * (toHigh - toLow) / (fromHigh - fromLow) + toLow;
     }
 }
