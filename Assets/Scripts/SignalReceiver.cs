@@ -20,11 +20,11 @@ public class SignalReceiver : MonoBehaviour
 
         if (warehouseController != null)
         {
-            Debug.Log("WarehouseController script gevonden: " + warehouseController.name);
+            Debug.Log("Found warehouse script: " + warehouseController.name);
         }
         else
         {
-            Debug.LogWarning("WarehouseController script niet gevonden!");
+            Debug.LogWarning("Could not find WarehouseController script!");
         }
     }
 
@@ -37,47 +37,19 @@ public class SignalReceiver : MonoBehaviour
         {
             if (topic == "position")
             {
-                float zPosition;
-                // Check if incomming data is numeric
-                if (float.TryParse(data.move, out zPosition))
+                if (warehouseController != null)
                 {
-                    if (warehouseController != null)
+                    warehouseController.MoveObjectsToTargets(data.moveZ, () =>
                     {
-                        zPosition = Mathf.Clamp(zPosition, 0f, 2200f);
-                        warehouseController.MoveObjectsToTargets(zPosition);
-                    }
-                }
-                else
-                {
-                    switch (data.move)
-                    {
-                        case "A1":
-                            zPosition = 810f; 
-                            break;
-                        case "B1":
-                            zPosition = 1455f; 
-                            break;
-                        case "C1":
-                            zPosition = 2100f; 
-                            break;
-                        case "base":
-                            zPosition = 0f; 
-                            break;
-                        default:
-                            zPosition = 0f; 
-                            break;
-                    }
-
-                    if (warehouseController != null)
-                    {
-                        warehouseController.MoveObjectsToTargets(zPosition);
-                    }
+                        // Executes when Z-axis movement completes
+                        warehouseController.MoveObjectToY(data.moveY);
+                    });
                 }
             }
         }
         else
         {
-            Debug.LogWarning("Ontvangen ongeldige berichtgegevens");
+            Debug.LogWarning("Received invalid data");
         }
     }
 
@@ -93,6 +65,7 @@ public class SignalReceiver : MonoBehaviour
     [System.Serializable]
     public class MessageData
     {
-        public string move;
+        public string moveZ;
+        public string moveY;
     }
 }
