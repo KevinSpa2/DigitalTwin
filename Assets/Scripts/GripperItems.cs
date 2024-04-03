@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SetParent : MonoBehaviour
+public class GripperItems : MonoBehaviour
 {
     private Transform container; // Reference to the container being picked up
 
@@ -11,7 +11,9 @@ public class SetParent : MonoBehaviour
         if (collision.gameObject.CompareTag("Container") && container == null)
         {
             container = collision.transform;
-            container.SetParent(transform); // Set container's parent to the platform
+            // Set container's parent to the platform
+            container.SetParent(transform); 
+            Debug.Log("Grabbed container");
         }
     }
 
@@ -19,8 +21,9 @@ public class SetParent : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Shelf") && container != null)
         {
-            container.SetParent(other.transform); // Set container's parent to the shelf
-            container = null; // Reset container reference
+            container.DetachChildren(); 
+            container = null; 
+            Debug.Log("Released container");
         }
     }
 }

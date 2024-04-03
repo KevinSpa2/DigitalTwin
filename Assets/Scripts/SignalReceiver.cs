@@ -45,7 +45,6 @@ public class SignalReceiver : MonoBehaviour
                         // Executes when Z-axis movement completes
                         warehouseController.MoveObjectToY(data.moveY, () =>
                         {
-                            Debug.LogError("Moving to X" + data.moveX);
                             warehouseController.MoveObjectToX(data.moveX);
                         });
                     });

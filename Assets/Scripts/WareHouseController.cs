@@ -43,8 +43,11 @@ public class WarehouseController : MonoBehaviour
 
     // Bools to track ongoing movement on Z and Y axes
     private bool isZMoving = false; 
-    private bool isYMoving = false; 
+    private bool isYMoving = false;
     private bool isXMoving = false;
+    
+    private bool movedDown;
+    private bool firstXRun = true;
 
     // Move objects to specified positions within the range of 0 to 2200
     public void MoveObjectsToTargets(string moveZInstruction, System.Action onZMovementComplete)
@@ -108,13 +111,13 @@ public class WarehouseController : MonoBehaviour
             switch (moveYInstruction)
             {
                 case "1":
-                    yPosition = 875f;
+                    yPosition = 935f;
                     break;
                 case "2":
-                    yPosition = 460f;
+                    yPosition = 520f;
                     break;
                 case "3":
-                    yPosition = 50f;
+                    yPosition = 110f;
                     break;
                 default:
                     yPosition = 0f;
@@ -216,7 +219,38 @@ public class WarehouseController : MonoBehaviour
             yield return null;
         }
 
-        isXMoving = false;
+        isXMoving = false;    
+        
+        yield return new WaitForSeconds(0.3f);
+
+        StartCoroutine(MoveYAxisSmooth(ausleger, ausleger.position - new Vector3(0f, 1f, 0f)));
+        StartCoroutine(MoveYAxisSmooth(greifer, greifer.position - new Vector3(0f, 1f, 0f)));
+
+        while (isYMoving)
+        {
+            yield return null;
+        }
+
+
+        // After reaching the target position, move back to minGreiferXPosition
+        if (targetX != minGreiferXPosition)
+        {
+            StartCoroutine(MoveXAxis(target, minGreiferXPosition));
+        }
+    }
+
+    private IEnumerator MoveYAxisSmooth(Transform target, Vector3 targetPosition)
+    {
+        isYMoving = true;
+
+        while (Vector3.Distance(target.position, targetPosition) > 0.01f)
+        {
+            float step = moveSpeed * Time.deltaTime;
+            target.position = Vector3.MoveTowards(target.position, targetPosition, step);
+            yield return null;
+        }
+
+        isYMoving = false;
     }
 
     // Map a value from one range to another
