@@ -7,8 +7,14 @@ public class WarehouseController : MonoBehaviour
     public Transform ausleger;
     public Transform greifer;
 
+    public bool holdingItem = false;
+
     // Movement speed of the objects
     public float moveSpeed = 1.0f;
+
+    public float topLevel = 930f;
+    public float midLevel = 520f;
+    public float bottomLevel = 110f;
 
     public float minZPosition = 0f;
     public float maxZPosition = 2200f;
@@ -111,13 +117,13 @@ public class WarehouseController : MonoBehaviour
             switch (moveYInstruction)
             {
                 case "1":
-                    yPosition = 935f;
+                    yPosition = topLevel;
                     break;
                 case "2":
-                    yPosition = 520f;
+                    yPosition = midLevel;
                     break;
                 case "3":
-                    yPosition = 110f;
+                    yPosition = bottomLevel;
                     break;
                 default:
                     yPosition = 0f;
@@ -224,9 +230,18 @@ public class WarehouseController : MonoBehaviour
         isXMoving = false;    
         
         yield return new WaitForSeconds(0.3f);
+        
+        if (holdingItem)
+        {
+            StartCoroutine(MoveYAxisSmooth(ausleger, ausleger.position - new Vector3(0f, 1f, 0f)));
+            StartCoroutine(MoveYAxisSmooth(greifer, greifer.position - new Vector3(0f, 1f, 0f)));
+        }
+        else
+        {
+            StartCoroutine(MoveYAxisSmooth(ausleger, ausleger.position - new Vector3(0f, -1f, 0f)));
+            StartCoroutine(MoveYAxisSmooth(greifer, greifer.position - new Vector3(0f, -1f, 0f)));
+        }
 
-        StartCoroutine(MoveYAxisSmooth(ausleger, ausleger.position - new Vector3(0f, 1f, 0f)));
-        StartCoroutine(MoveYAxisSmooth(greifer, greifer.position - new Vector3(0f, 1f, 0f)));
 
         while (isYMoving)
         {

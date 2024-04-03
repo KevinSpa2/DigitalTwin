@@ -5,6 +5,11 @@ using UnityEngine;
 public class GripperItems : MonoBehaviour
 {
     private Transform container; // Reference to the container being picked up
+    public WarehouseController warehouseController;
+    private void Start()
+    {
+        warehouseController = FindObjectOfType<WarehouseController>();
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -14,6 +19,7 @@ public class GripperItems : MonoBehaviour
             // Set container's parent to the platform
             container.SetParent(transform); 
             Debug.Log("Grabbed container");
+            warehouseController.holdingItem = true;
         }
     }
 
@@ -24,6 +30,7 @@ public class GripperItems : MonoBehaviour
             container.DetachChildren(); 
             container = null; 
             Debug.Log("Released container");
+            warehouseController.holdingItem = false;
         }
     }
 }
