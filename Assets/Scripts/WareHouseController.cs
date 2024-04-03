@@ -138,6 +138,7 @@ public class WarehouseController : MonoBehaviour
     public void MoveObjectToX(string moveXInstruction)
     {
         float xPosition;
+        bool shouldMove = true;
 
         switch (moveXInstruction)
         {
@@ -154,12 +155,13 @@ public class WarehouseController : MonoBehaviour
                 xPosition = maxGreiferXPosition - 0.3f;
                 break;
             default:
-                xPosition = minGreiferXPosition;
+                xPosition = 0f;
+                shouldMove = false;
                 break;
         }
 
         // If moveInstruction is a numeric value, map it to the range defined by minXPosition and maxXPosition
-        if (!isXMoving)
+        if (!isXMoving && shouldMove)
         {
             StartCoroutine(MoveXAxis(greifer, xPosition));
         }
