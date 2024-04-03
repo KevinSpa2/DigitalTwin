@@ -10,8 +10,8 @@ public class SetParent : MonoBehaviour
         collision.transform.SetParent(transform);
     }
 
-    private void OnCollisionExit(Collision collision)
+    public void ReleaseContainer(Transform transformComponent)
     {
-        collision.transform.SetParent(null);
+        transformComponent.SetParent(null);
     }
 }
