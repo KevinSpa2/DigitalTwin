@@ -4,14 +4,23 @@ using UnityEngine;
 
 public class SetParent : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private Transform container; // Reference to the container being picked up
+
     private void OnCollisionEnter(Collision collision)
     {
-        collision.transform.SetParent(transform);
+        if (collision.gameObject.CompareTag("Container") && container == null)
+        {
+            container = collision.transform;
+            container.SetParent(transform); // Set container's parent to the platform
+        }
     }
 
-    public void ReleaseContainer(Transform transformComponent)
+    private void OnTriggerEnter(Collider other)
     {
-        transformComponent.SetParent(null);
+        if (other.gameObject.CompareTag("Shelf") && container != null)
+        {
+            container.SetParent(other.transform); // Set container's parent to the shelf
+            container = null; // Reset container reference
+        }
     }
 }

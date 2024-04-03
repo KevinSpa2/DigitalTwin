@@ -41,8 +41,13 @@ public class SignalReceiver : MonoBehaviour
                 {
                     warehouseController.MoveObjectsToTargets(data.moveZ, () =>
                     {
+                        
                         // Executes when Z-axis movement completes
-                        warehouseController.MoveObjectToY(data.moveY);
+                        warehouseController.MoveObjectToY(data.moveY, () =>
+                        {
+                            Debug.LogError("Moving to X" + data.moveX);
+                            warehouseController.MoveObjectToX(data.moveX);
+                        });
                     });
                 }
             }
@@ -67,5 +72,6 @@ public class SignalReceiver : MonoBehaviour
     {
         public string moveZ;
         public string moveY;
+        public string moveX;
     }
 }

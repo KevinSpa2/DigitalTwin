@@ -14,7 +14,10 @@ public class WarehouseController : MonoBehaviour
     public float maxZPosition = 2200f;
 
     public float minYPosition = 0f;
-    public float maxYPosition = 1000;
+    public float maxYPosition = 1000f;
+
+    public float minXPosition = 0f;
+    public float maxXPosition = 100f;
 
     // Z-axis position constraints for individual objects
     public float minTurmZPosition = 37.03607f;
@@ -33,9 +36,15 @@ public class WarehouseController : MonoBehaviour
     public float minGreiferYPosition = 6.857f;
     public float maxGreiferYPosition = 21.404f;
 
+    // X-axis position constrains for objects
+    public float minGreiferXPosition = -11.17033f;
+    public float maxGreiferXPosition = -7.4f;
+
+
     // Bools to track ongoing movement on Z and Y axes
     private bool isZMoving = false; 
     private bool isYMoving = false; 
+    private bool isXMoving = false;
 
     // Move objects to specified positions within the range of 0 to 2200
     public void MoveObjectsToTargets(string moveZInstruction, System.Action onZMovementComplete)
@@ -84,7 +93,7 @@ public class WarehouseController : MonoBehaviour
         }
     }
     
-    public void MoveObjectToY(string moveYInstruction)
+    public void MoveObjectToY(string moveYInstruction, System.Action onYMovementComplete)
     {
         float yPosition;
 
@@ -113,16 +122,48 @@ public class WarehouseController : MonoBehaviour
             }
         }
 
-
         if (!isYMoving)
         {
             float auslegerTarget = Map(yPosition, minYPosition, maxYPosition, minAuslegerYPosition, maxAuslegerYPosition);
             float greiferTarget = Map(yPosition, minYPosition, maxYPosition, minGreiferYPosition, maxGreiferYPosition);
 
             StartCoroutine(MoveYAxis(ausleger, auslegerTarget));
-            StartCoroutine(MoveYAxis(greifer, greiferTarget));
+            StartCoroutine(MoveYAxis(greifer, greiferTarget, onYMovementComplete));
         }
     }
+
+    public void MoveObjectToX(string moveXInstruction)
+    {
+        float xPosition;
+
+        switch (moveXInstruction)
+        {
+            case "R":
+            case "r":
+            case "rack":
+            case "Rack":
+                xPosition = maxGreiferXPosition;
+                break;
+            case "A":
+            case "a":
+            case "assembly":
+            case "Assembly":
+                xPosition = maxGreiferXPosition - 0.3f;
+                break;
+            default:
+                xPosition = minGreiferXPosition;
+                break;
+        }
+
+        // If moveInstruction is a numeric value, map it to the range defined by minXPosition and maxXPosition
+        if (!isXMoving)
+        {
+            StartCoroutine(MoveXAxis(greifer, xPosition));
+        }
+        
+    }
+
+
 
     // Coroutine to move object to target position on Z-axis
     private IEnumerator MoveZAxis(Transform target, float targetZ, System.Action onComplete = null)
@@ -144,7 +185,7 @@ public class WarehouseController : MonoBehaviour
     }
 
     // Coroutine to move object to target position on Y-axis
-    private IEnumerator MoveYAxis(Transform target, float targetY)
+    private IEnumerator MoveYAxis(Transform target, float targetY, System.Action onComplete = null)
     {
         isYMoving = true;
 
@@ -158,6 +199,24 @@ public class WarehouseController : MonoBehaviour
         }
 
         isYMoving = false;
+
+        onComplete?.Invoke();
+    }
+        
+    private IEnumerator MoveXAxis(Transform target, float targetX)
+    {
+        isXMoving = true;
+
+        while (Mathf.Abs(target.position.x - targetX) > 0.01f)
+        {
+            float step = moveSpeed * Time.deltaTime;
+            Vector3 currentPosition = target.position;
+            Vector3 targetPosition = new Vector3(targetX, currentPosition.y, currentPosition.z);
+            target.position = Vector3.MoveTowards(currentPosition, targetPosition, step);
+            yield return null;
+        }
+
+        isXMoving = false;
     }
 
     // Map a value from one range to another
