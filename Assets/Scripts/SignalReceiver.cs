@@ -39,13 +39,13 @@ public class SignalReceiver : MonoBehaviour
             {
                 if (warehouseController != null)
                 {
-                    warehouseController.MoveObjectsToTargets(data.moveZ, () =>
+                    warehouseController.MoveTurmToTarget(data.moveZ, () =>
                     {
                         
                         // Executes when Z-axis movement completes
-                        warehouseController.MoveObjectToY(data.moveY, () =>
+                        warehouseController.MoveAuslegerToTarget(data.moveY, () =>
                         {
-                            warehouseController.MoveObjectToX(data.moveX);
+                            warehouseController.MoveGreiferToTarget(data.moveX);
                         });
                     });
                 }
