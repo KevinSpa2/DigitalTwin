@@ -55,13 +55,6 @@ public class WarehouseController : MonoBehaviour
     private bool movedDown;
     private bool firstXRun = true;
 
-    
-    public GripperItems gripperItems;
-    private void Start()
-    {
-        gripperItems = FindObjectOfType<GripperItems>();
-    }
-
     // Move objects to specified positions within the range of 0 to 2200
     public void MoveObjectsToTargets(string moveZInstruction, System.Action onZMovementComplete)
     {
@@ -211,7 +204,6 @@ public class WarehouseController : MonoBehaviour
         }
         while (Mathf.Abs(target.position.y - targetY) > 0.01f)
         {
-            Debug.Log("targetY " + targetY);
             float step = moveSpeed * Time.deltaTime;
             Vector3 currentPosition = target.position;
             Vector3 targetPosition = new Vector3(currentPosition.x, targetY, currentPosition.z);
