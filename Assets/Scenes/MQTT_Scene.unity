@@ -1788,6 +1788,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93ba3847008a1ab468b6f4fdb7b51c52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  container: {fileID: 0}
+  warehouseController: {fileID: 0}
 --- !u!1 &1265768794 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -790547607359263487, guid: 81d5559c9effd8e42a53482e95ca1fec, type: 3}
@@ -1996,7 +1998,11 @@ MonoBehaviour:
   turm: {fileID: 2084218851}
   ausleger: {fileID: 1921452083}
   greifer: {fileID: 1327735230}
+  holdingItem: 0
   moveSpeed: 10
+  topLevel: 925
+  midLevel: 520
+  bottomLevel: 110
   minZPosition: 0
   maxZPosition: 2200
   minYPosition: 0
@@ -2015,6 +2021,7 @@ MonoBehaviour:
   maxGreiferYPosition: 21.404
   minGreiferXPosition: -11.17033
   maxGreiferXPosition: -7.4
+  gripperItems: {fileID: 0}
 --- !u!1 &1410049721
 GameObject:
   m_ObjectHideFlags: 0
@@ -3461,6 +3468,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64945ae5bfdc5ea4cbf3eb285d709b87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  warehouseController: {fileID: 0}
+  gripperItems: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

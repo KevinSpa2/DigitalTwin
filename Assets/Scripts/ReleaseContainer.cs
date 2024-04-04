@@ -6,18 +6,28 @@ using UnityEngine;
 public class ReleaseContainer : MonoBehaviour
 {
     public WarehouseController warehouseController;
+    public GripperItems gripperItems;
+
+    private bool onShelf = false;
+
     private void Start()
     {
         warehouseController = FindObjectOfType<WarehouseController>();
+        gripperItems = FindObjectOfType<GripperItems>();
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Shelf") && transform.parent != null)
         {
-            // If the container is on the platform, release it
-            transform.parent = null; // Detach from parent
-            Debug.Log("Released container from RELEASE");
-            warehouseController.holdingItem = false;
+            if (!onShelf)
+            {
+                // If the container is on the platform, release it
+                transform.parent = null;
+                gripperItems.container = null;
+                onShelf = true;
+                Debug.Log("Released container");
+                warehouseController.holdingItem = false;
+            }
         }
     }
 }

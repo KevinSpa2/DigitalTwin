@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class GripperItems : MonoBehaviour
 {
-    private Transform container; // Reference to the container being picked up
+    public Transform container; // Reference to the container being picked up
     public WarehouseController warehouseController;
     private void Start()
     {
         warehouseController = FindObjectOfType<WarehouseController>();
     }
+
+
 
     private void OnCollisionEnter(Collision collision)
     {

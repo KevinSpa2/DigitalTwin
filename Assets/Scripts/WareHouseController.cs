@@ -12,7 +12,7 @@ public class WarehouseController : MonoBehaviour
     // Movement speed of the objects
     public float moveSpeed = 1.0f;
 
-    public float topLevel = 930f;
+    public float topLevel = 915f;
     public float midLevel = 520f;
     public float bottomLevel = 110f;
 
@@ -54,6 +54,13 @@ public class WarehouseController : MonoBehaviour
     
     private bool movedDown;
     private bool firstXRun = true;
+
+    
+    public GripperItems gripperItems;
+    private void Start()
+    {
+        gripperItems = FindObjectOfType<GripperItems>();
+    }
 
     // Move objects to specified positions within the range of 0 to 2200
     public void MoveObjectsToTargets(string moveZInstruction, System.Action onZMovementComplete)
@@ -199,9 +206,12 @@ public class WarehouseController : MonoBehaviour
     private IEnumerator MoveYAxis(Transform target, float targetY, System.Action onComplete = null)
     {
         isYMoving = true;
-
+        if (!holdingItem) {
+            targetY = targetY - 1f;
+        }
         while (Mathf.Abs(target.position.y - targetY) > 0.01f)
         {
+            Debug.Log("targetY " + targetY);
             float step = moveSpeed * Time.deltaTime;
             Vector3 currentPosition = target.position;
             Vector3 targetPosition = new Vector3(currentPosition.x, targetY, currentPosition.z);
@@ -225,6 +235,7 @@ public class WarehouseController : MonoBehaviour
             Vector3 targetPosition = new Vector3(targetX, currentPosition.y, currentPosition.z);
             target.position = Vector3.MoveTowards(currentPosition, targetPosition, step);
             yield return null;
+
         }
 
         isXMoving = false;    
