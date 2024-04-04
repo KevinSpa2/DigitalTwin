@@ -3454,6 +3454,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Shelf
       objectReference: {fileID: 0}
+    - target: {fileID: 5313919353373908788, guid: 81d5559c9effd8e42a53482e95ca1fec, type: 3}
+      propertyPath: m_TagString
+      value: Gripper
+      objectReference: {fileID: 0}
     - target: {fileID: 5853170988262621320, guid: 81d5559c9effd8e42a53482e95ca1fec, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -5236,8 +5240,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93ba3847008a1ab468b6f4fdb7b51c52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  container: {fileID: 0}
-  warehouseController: {fileID: 0}
 --- !u!1 &1265768794 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -790547607359263487, guid: 81d5559c9effd8e42a53482e95ca1fec, type: 3}
