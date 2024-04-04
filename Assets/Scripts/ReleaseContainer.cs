@@ -6,15 +6,26 @@ using UnityEngine;
 public class ReleaseContainer : MonoBehaviour
 {
     public WarehouseController warehouseController;
-    public GripperItems gripperItems;
 
     private bool onShelf = false;
 
     private void Start()
     {
         warehouseController = FindObjectOfType<WarehouseController>();
-        gripperItems = FindObjectOfType<GripperItems>();
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Gripper"))
+        {
+            transform.parent = collision.transform;
+            // Set container's parent to the platform
+            Debug.Log("Attached to gripper");
+            warehouseController.holdingItem = true;
+            onShelf = false;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Shelf") && transform.parent != null)
@@ -23,9 +34,8 @@ public class ReleaseContainer : MonoBehaviour
             {
                 // If the container is on the platform, release it
                 transform.parent = null;
-                gripperItems.container = null;
-                onShelf = true;
                 Debug.Log("Released container");
+                onShelf = true;
                 warehouseController.holdingItem = false;
             }
         }
