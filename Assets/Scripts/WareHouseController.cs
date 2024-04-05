@@ -1,20 +1,32 @@
 using System.Collections;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class WarehouseController : MonoBehaviour
 {
+    // Components
     public Transform turm;
     public Transform ausleger;
     public Transform greifer;
 
+    // Holding item
+    public bool holdingItem = false;
+
     // Movement speed of the objects
     public float moveSpeed = 1.0f;
 
+    // Shelf heights
+    public float topLevel = 915f;
+    public float midLevel = 520f;
+    public float bottomLevel = 110f;
+
+    // Min and max inputs
     public float minZPosition = 0f;
     public float maxZPosition = 2200f;
 
     public float minYPosition = 0f;
-    public float maxYPosition = 1000;
+    public float maxYPosition = 1000f;
+
 
     // Z-axis position constraints for individual objects
     public float minTurmZPosition = 37.03607f;
@@ -33,12 +45,32 @@ public class WarehouseController : MonoBehaviour
     public float minGreiferYPosition = 6.857f;
     public float maxGreiferYPosition = 21.404f;
 
-    // Bools to track ongoing movement on Z and Y axes
-    private bool isZMoving = false; 
-    private bool isYMoving = false; 
+    // X-axis position constrains for objects
+    public float minGreiferXPosition = -11.17033f;
+    public float maxGreiferXPosition = -7.4f;
+
+
+    // Bools to track ongoing movement on all axis
+    public bool isZMoving = false; 
+    public bool isYMoving = false;
+    public bool isXMoving = false;
+    
+    public bool correctTurmLocation = false;
+    public bool correctAuslegerLocation = false;
+
+    public MovingObjects movingObjects;
+    public ShelfManager shelfManager;
+
+    
+
+    private void Start()
+    {
+        movingObjects = FindObjectOfType<MovingObjects>();
+        shelfManager = FindObjectOfType<ShelfManager>();
+    } 
 
     // Move objects to specified positions within the range of 0 to 2200
-    public void MoveObjectsToTargets(string moveZInstruction, System.Action onZMovementComplete)
+    public void MoveTurmToTarget(string moveZInstruction, System.Action onZMovementComplete)
     {
         float zPosition;
 
@@ -47,6 +79,7 @@ public class WarehouseController : MonoBehaviour
         {
             // If moveInstruction is a numeric value, clamp it in the range of 0 and 2200
             zPosition = Mathf.Clamp(zPosition, minZPosition, maxZPosition);
+            correctTurmLocation = false;
         }
         // Predefined locations
         else
@@ -54,19 +87,27 @@ public class WarehouseController : MonoBehaviour
             switch (moveZInstruction)
             {
                 case "A":
+                case "a":
                     zPosition = 810f;
+                    correctTurmLocation = true;
                     break;
                 case "B":
+                case "b":
                     zPosition = 1455f;
+                    correctTurmLocation = true;
                     break;
                 case "C":
+                case "c":
                     zPosition = 2100f;
+                    correctTurmLocation = true;
                     break;
                 case "base":
                     zPosition = 0f;
+                    correctTurmLocation = true;
                     break;
                 default:
                     zPosition = 0f;
+                    correctTurmLocation = false;
                     break;
             }
         }
@@ -78,13 +119,13 @@ public class WarehouseController : MonoBehaviour
             float greiferTarget = Map(zPosition, minZPosition, maxZPosition, minGreiferZPosition, maxGreiferZPosition);
 
             // Move objects on Z-axis with coroutines
-            StartCoroutine(MoveZAxis(turm, turmTarget));
-            StartCoroutine(MoveZAxis(ausleger, auslegerTarget));
-            StartCoroutine(MoveZAxis(greifer, greiferTarget, onZMovementComplete));
+            StartCoroutine(movingObjects.MoveTurm(turm, turmTarget));
+            StartCoroutine(movingObjects.MoveTurm(ausleger, auslegerTarget));
+            StartCoroutine(movingObjects.MoveTurm(greifer, greiferTarget, onZMovementComplete));
         }
     }
     
-    public void MoveObjectToY(string moveYInstruction)
+    public void MoveAuslegerToTarget(string moveYInstruction, System.Action onYMovementComplete)
     {
         float yPosition;
 
@@ -99,65 +140,73 @@ public class WarehouseController : MonoBehaviour
             switch (moveYInstruction)
             {
                 case "1":
-                    yPosition = 875f;
+                    yPosition = topLevel;
+                    correctAuslegerLocation = true;
                     break;
                 case "2":
-                    yPosition = 460f;
+                    yPosition = midLevel;
+                    correctAuslegerLocation = true;
                     break;
                 case "3":
-                    yPosition = 50f;
+                    yPosition = bottomLevel;
+                    correctAuslegerLocation = true;
                     break;
                 default:
                     yPosition = 0f;
+                    correctAuslegerLocation = false;
                     break;
             }
         }
-
 
         if (!isYMoving)
         {
             float auslegerTarget = Map(yPosition, minYPosition, maxYPosition, minAuslegerYPosition, maxAuslegerYPosition);
             float greiferTarget = Map(yPosition, minYPosition, maxYPosition, minGreiferYPosition, maxGreiferYPosition);
 
-            StartCoroutine(MoveYAxis(ausleger, auslegerTarget));
-            StartCoroutine(MoveYAxis(greifer, greiferTarget));
+            StartCoroutine(movingObjects.MoveAusleger(ausleger, auslegerTarget));
+            StartCoroutine(movingObjects.MoveAusleger(greifer, greiferTarget, onYMovementComplete));
         }
     }
 
-    // Coroutine to move object to target position on Z-axis
-    private IEnumerator MoveZAxis(Transform target, float targetZ, System.Action onComplete = null)
+    public void MoveGreiferToTarget(string moveXInstruction, string column, string level)
     {
-        isZMoving = true;
-
-        while (Mathf.Abs(target.position.z - targetZ) > 0.01f)
+        float xPosition;
+        bool shouldExtend = true;
+        switch (moveXInstruction)
         {
-            float step = moveSpeed * Time.deltaTime;
-            Vector3 currentPosition = target.position;
-            Vector3 targetPosition = new Vector3(currentPosition.x, currentPosition.y, targetZ);
-            target.position = Vector3.MoveTowards(currentPosition, targetPosition, step);
-            yield return null;
-        }
+            case "R":
+            case "r":
+            case "rack":
+            case "Rack":
+                xPosition = maxGreiferXPosition;
+                break;
+            case "A":
+            case "a":
+            case "assembly":
+            case "Assembly":
+                xPosition = maxGreiferXPosition + 0.3f;
+                break;
+            default:
+                xPosition = 0f;
+                shouldExtend = false;
+                shelfManager.DisplayValues();
+                break;
+        }   
+        
+        Debug.Log(column+level);
 
-        isZMoving = false;
-
-        onComplete?.Invoke();
-    }
-
-    // Coroutine to move object to target position on Y-axis
-    private IEnumerator MoveYAxis(Transform target, float targetY)
-    {
-        isYMoving = true;
-
-        while (Mathf.Abs(target.position.y - targetY) > 0.01f)
+        // If moveInstruction is a numeric value, map it to the range defined by minXPosition and maxXPosition
+        if (!isXMoving && shouldExtend && correctAuslegerLocation && correctTurmLocation)
         {
-            float step = moveSpeed * Time.deltaTime;
-            Vector3 currentPosition = target.position;
-            Vector3 targetPosition = new Vector3(currentPosition.x, targetY, currentPosition.z);
-            target.position = Vector3.MoveTowards(currentPosition, targetPosition, step);
-            yield return null;
+            if (shelfManager.SearchValue(column+level) && holdingItem)
+            {
+                Debug.Log("Shelf already occupied!");
+            }
+            else
+            {
+                StartCoroutine(movingObjects.MoveGreifer(greifer, xPosition));
+            }
         }
-
-        isYMoving = false;
     }
 
     // Map a value from one range to another

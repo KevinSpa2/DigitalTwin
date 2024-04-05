@@ -39,10 +39,14 @@ public class SignalReceiver : MonoBehaviour
             {
                 if (warehouseController != null)
                 {
-                    warehouseController.MoveObjectsToTargets(data.moveZ, () =>
+                    warehouseController.MoveTurmToTarget(data.moveTurm, () =>
                     {
+                        
                         // Executes when Z-axis movement completes
-                        warehouseController.MoveObjectToY(data.moveY);
+                        warehouseController.MoveAuslegerToTarget(data.moveAusleger, () =>
+                        {
+                            warehouseController.MoveGreiferToTarget(data.moveGripper, data.moveTurm, data.moveAusleger);
+                        });
                     });
                 }
             }
@@ -65,7 +69,8 @@ public class SignalReceiver : MonoBehaviour
     [System.Serializable]
     public class MessageData
     {
-        public string moveZ;
-        public string moveY;
+        public string moveTurm;
+        public string moveAusleger;
+        public string moveGripper;
     }
 }
