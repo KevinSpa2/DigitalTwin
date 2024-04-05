@@ -20,7 +20,7 @@ To run the digital twin environment, follow these steps:
 
 ## Sending Messages
 
-Use the MQTTX client to send messages to the digital twin. You will need to connect to the local MQTT broker (default 127.0.0.1) and publish messages to ```'position'``` topic. 
+Use the MQTTX client to send messages to the digital twin. You will need to connect to the local MQTT broker (default 127.0.0.1) and publish messages to ```position``` topic. 
 
 #### Data format (json):
 
