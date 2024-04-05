@@ -52,7 +52,7 @@ public class MovingObjects : MonoBehaviour
     }
     
     // Move greifer to target position on X-axis
-    public IEnumerator MoveGreifer(Transform target, float targetX)
+    public IEnumerator MoveGreifer(Transform target, float targetX, bool isExtended = false)
     {
         warehouseController.isXMoving = true;
 
@@ -68,30 +68,33 @@ public class MovingObjects : MonoBehaviour
 
         warehouseController.isXMoving = false;    
         
-        yield return new WaitForSeconds(0.3f);
-        
-        if (warehouseController.holdingItem)
+        if (!isExtended)
         {
-            StartCoroutine(MoveGreiferVertical(warehouseController.ausleger, warehouseController.ausleger.position - new Vector3(0f, 1f, 0f)));
-            StartCoroutine(MoveGreiferVertical(warehouseController.greifer, warehouseController.greifer.position - new Vector3(0f, 1f, 0f)));
-        }
-        else
-        {
-            StartCoroutine(MoveGreiferVertical(warehouseController.ausleger, warehouseController.ausleger.position - new Vector3(0f, -1f, 0f)));
-            StartCoroutine(MoveGreiferVertical(warehouseController.greifer, warehouseController.greifer.position - new Vector3(0f, -1f, 0f)));
-        }
+            yield return new WaitForSeconds(0.3f);
+            
+            if (warehouseController.holdingItem)
+            {
+                StartCoroutine(MoveGreiferVertical(warehouseController.ausleger, warehouseController.ausleger.position - new Vector3(0f, 1f, 0f)));
+                StartCoroutine(MoveGreiferVertical(warehouseController.greifer, warehouseController.greifer.position - new Vector3(0f, 1f, 0f)));
+            }
+            else
+            {
+                StartCoroutine(MoveGreiferVertical(warehouseController.ausleger, warehouseController.ausleger.position - new Vector3(0f, -1f, 0f)));
+                StartCoroutine(MoveGreiferVertical(warehouseController.greifer, warehouseController.greifer.position - new Vector3(0f, -1f, 0f)));
+            }
 
 
-        while (warehouseController.isYMoving)
-        {
-            yield return null;
-        }
+            while (warehouseController.isYMoving)
+            {
+                yield return null;
+            }
 
 
-        // After reaching the target position, move back to minGreiferXPosition
-        if (targetX != warehouseController.minGreiferXPosition)
-        {
-            StartCoroutine(MoveGreifer(target, warehouseController.minGreiferXPosition));
+            // After reaching the target position, move back to minGreiferXPosition
+            if (targetX != warehouseController.minGreiferXPosition)
+            {
+                StartCoroutine(MoveGreifer(target, warehouseController.minGreiferXPosition, true));
+            }
         }
     }
 
