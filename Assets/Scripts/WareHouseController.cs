@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class WarehouseController : MonoBehaviour
@@ -54,16 +55,18 @@ public class WarehouseController : MonoBehaviour
     public bool isYMoving = false;
     public bool isXMoving = false;
     
+    public bool correctTurmLocation = false;
+    public bool correctAuslegerLocation = false;
+
     public MovingObjects movingObjects;
+    public ShelfManager shelfManager;
+
     
+
     private void Start()
     {
         movingObjects = FindObjectOfType<MovingObjects>();
-
-        if (movingObjects == null)
-        {
-            Debug.LogError("MovingObjects not found in the scene!");
-        }
+        shelfManager = FindObjectOfType<ShelfManager>();
     } 
 
     // Move objects to specified positions within the range of 0 to 2200
@@ -76,6 +79,7 @@ public class WarehouseController : MonoBehaviour
         {
             // If moveInstruction is a numeric value, clamp it in the range of 0 and 2200
             zPosition = Mathf.Clamp(zPosition, minZPosition, maxZPosition);
+            correctTurmLocation = false;
         }
         // Predefined locations
         else
@@ -85,20 +89,25 @@ public class WarehouseController : MonoBehaviour
                 case "A":
                 case "a":
                     zPosition = 810f;
+                    correctTurmLocation = true;
                     break;
                 case "B":
                 case "b":
                     zPosition = 1455f;
+                    correctTurmLocation = true;
                     break;
                 case "C":
                 case "c":
                     zPosition = 2100f;
+                    correctTurmLocation = true;
                     break;
                 case "base":
                     zPosition = 0f;
+                    correctTurmLocation = true;
                     break;
                 default:
                     zPosition = 0f;
+                    correctTurmLocation = false;
                     break;
             }
         }
@@ -132,15 +141,19 @@ public class WarehouseController : MonoBehaviour
             {
                 case "1":
                     yPosition = topLevel;
+                    correctAuslegerLocation = true;
                     break;
                 case "2":
                     yPosition = midLevel;
+                    correctAuslegerLocation = true;
                     break;
                 case "3":
                     yPosition = bottomLevel;
+                    correctAuslegerLocation = true;
                     break;
                 default:
                     yPosition = 0f;
+                    correctAuslegerLocation = false;
                     break;
             }
         }
@@ -155,10 +168,10 @@ public class WarehouseController : MonoBehaviour
         }
     }
 
-    public void MoveGreiferToTarget(string moveXInstruction)
+    public void MoveGreiferToTarget(string moveXInstruction, string column, string level)
     {
         float xPosition;
-
+        bool shouldExtend = true;
         switch (moveXInstruction)
         {
             case "R":
@@ -175,13 +188,24 @@ public class WarehouseController : MonoBehaviour
                 break;
             default:
                 xPosition = 0f;
+                shouldExtend = false;
+                shelfManager.DisplayValues();
                 break;
         }   
         
+        Debug.Log(column+level);
+
         // If moveInstruction is a numeric value, map it to the range defined by minXPosition and maxXPosition
-        if (!isXMoving)
+        if (!isXMoving && shouldExtend && correctAuslegerLocation && correctTurmLocation)
         {
-            StartCoroutine(movingObjects.MoveGreifer(greifer, xPosition));
+            if (shelfManager.SearchValue(column+level) && holdingItem)
+            {
+                Debug.Log("Shelf already occupied!");
+            }
+            else
+            {
+                StartCoroutine(movingObjects.MoveGreifer(greifer, xPosition));
+            }
         }
     }
 

@@ -45,7 +45,7 @@ public class SignalReceiver : MonoBehaviour
                         // Executes when Z-axis movement completes
                         warehouseController.MoveAuslegerToTarget(data.moveAusleger, () =>
                         {
-                            warehouseController.MoveGreiferToTarget(data.moveGripper);
+                            warehouseController.MoveGreiferToTarget(data.moveGripper, data.moveTurm, data.moveAusleger);
                         });
                     });
                 }

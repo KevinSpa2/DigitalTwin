@@ -9,6 +9,8 @@ public class ReleaseContainer : MonoBehaviour
 
     private bool onShelf = false;
 
+    private string shelfName;
+
     private void Start()
     {
         warehouseController = FindObjectOfType<WarehouseController>();
@@ -23,20 +25,36 @@ public class ReleaseContainer : MonoBehaviour
             Debug.Log("Attached to gripper");
             warehouseController.holdingItem = true;
             onShelf = false;
+            if (shelfName != null)
+            {
+                warehouseController.shelfManager.RemoveValue(shelfName);
+            }
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Shelf") && transform.parent != null)
+        if (other.gameObject.CompareTag("Shelf"))
         {
-            if (!onShelf)
+            shelfName = other.gameObject.name;
+            if (transform.parent != null)
             {
-                // If the container is on the platform, release it
-                transform.parent = null;
-                Debug.Log("Released container");
-                onShelf = true;
-                warehouseController.holdingItem = false;
+                if (!onShelf)
+                {
+                    Debug.Log("Container is in contact with shelf: " + shelfName);
+                    // If the container is on the platform, release it
+                    transform.parent = null;
+                    Debug.Log("Released container");
+                    onShelf = true;
+                    warehouseController.holdingItem = false;
+                    warehouseController.shelfManager.AddValue(shelfName);
+                    warehouseController.shelfManager.DisplayValues();
+                }
+            }
+            else
+            {
+                warehouseController.shelfManager.AddValue(shelfName);
+                warehouseController.shelfManager.DisplayValues();
             }
         }
     }
