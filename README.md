@@ -22,7 +22,7 @@ To run the digital twin environment, follow these steps:
 
 Use the MQTTX client to send messages to the digital twin. You will need to connect to the local MQTT broker (default 127.0.0.1) and publish messages to ```'position'``` topic. 
 
-###### Data format (json):
+#### Data format (json):
 
 ```json
 {
@@ -32,9 +32,9 @@ Use the MQTTX client to send messages to the digital twin. You will need to conn
 }
 ```
 
-###### Available data to send:
+#### Available data to send:
 
-```json
+```sql
 moveTurm:
     - "A" or "a": Right column
     - "B" or "b": Middle column
