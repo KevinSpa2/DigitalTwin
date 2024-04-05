@@ -12,15 +12,15 @@ public class MovingObjects : MonoBehaviour
     }   
 
     // Move turm to target position on Z-axis
-    public IEnumerator MoveTurm(Transform target, float targetZ, System.Action onComplete = null)
+    public IEnumerator MoveTurm(Transform target, float targetTurm, System.Action onComplete = null)
     {
         warehouseController.isZMoving = true;
 
-        while (Mathf.Abs(target.position.z - targetZ) > 0.01f)
+        while (Mathf.Abs(target.position.z - targetTurm) > 0.01f)
         {
             float step = warehouseController.moveSpeed * Time.deltaTime;
             Vector3 currentPosition = target.position;
-            Vector3 targetPosition = new Vector3(currentPosition.x, currentPosition.y, targetZ);
+            Vector3 targetPosition = new Vector3(currentPosition.x, currentPosition.y, targetTurm);
             target.position = Vector3.MoveTowards(currentPosition, targetPosition, step);
             yield return null;
         }
@@ -31,17 +31,17 @@ public class MovingObjects : MonoBehaviour
     }
 
     // Move ausleger to vertical target position on Y-axis
-    public IEnumerator MoveAusleger(Transform target, float targetY, System.Action onComplete = null)
+    public IEnumerator MoveAusleger(Transform target, float targetAusleger, System.Action onComplete = null)
     {
         warehouseController.isYMoving = true;
         if (!warehouseController.holdingItem) {
-            targetY = targetY - 1f;
+            targetAusleger = targetAusleger - 1f;
         }
-        while (Mathf.Abs(target.position.y - targetY) > 0.01f)
+        while (Mathf.Abs(target.position.y - targetAusleger) > 0.01f)
         {
             float step = warehouseController.moveSpeed * Time.deltaTime;
             Vector3 currentPosition = target.position;
-            Vector3 targetPosition = new Vector3(currentPosition.x, targetY, currentPosition.z);
+            Vector3 targetPosition = new Vector3(currentPosition.x, targetAusleger, currentPosition.z);
             target.position = Vector3.MoveTowards(currentPosition, targetPosition, step);
             yield return null;
         }
@@ -52,15 +52,15 @@ public class MovingObjects : MonoBehaviour
     }
     
     // Move greifer to target position on X-axis
-    public IEnumerator MoveGreifer(Transform target, float targetX, bool isExtended = false)
+    public IEnumerator MoveGreifer(Transform target, float targetGreifer, bool isExtended = false)
     {
         warehouseController.isXMoving = true;
 
-        while (Mathf.Abs(target.position.x - targetX) > 0.01f)
+        while (Mathf.Abs(target.position.x - targetGreifer) > 0.01f)
         {
             float step = warehouseController.moveSpeed * Time.deltaTime;
             Vector3 currentPosition = target.position;
-            Vector3 targetPosition = new Vector3(targetX, currentPosition.y, currentPosition.z);
+            Vector3 targetPosition = new Vector3(targetGreifer, currentPosition.y, currentPosition.z);
             target.position = Vector3.MoveTowards(currentPosition, targetPosition, step);
             yield return null;
 
@@ -91,7 +91,7 @@ public class MovingObjects : MonoBehaviour
 
 
             // After reaching the target position, move back to minGreiferXPosition
-            if (targetX != warehouseController.minGreiferXPosition)
+            if (targetGreifer != warehouseController.minGreiferXPosition)
             {
                 StartCoroutine(MoveGreifer(target, warehouseController.minGreiferXPosition, true));
             }
