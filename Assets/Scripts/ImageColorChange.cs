@@ -16,10 +16,9 @@ public class NewBehaviourScript : MonoBehaviour
         // Controleer of er acties worden uitgevoerd in de WarehouseController
         if (controller.GetComponent<WarehouseController>().isZMoving ||
             controller.GetComponent<WarehouseController>().isYMoving ||
-            controller.GetComponent<WarehouseController>().isXMoving)
-        {
-            
-             statusButton.sprite = statusButtonOrange;
+            controller.GetComponent<WarehouseController>().isXMoving
+        ){
+            statusButton.sprite = statusButtonOrange;
         }
         else
         {
