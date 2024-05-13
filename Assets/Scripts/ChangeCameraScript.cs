@@ -6,6 +6,7 @@ public class ChangeCameraScript : MonoBehaviour
 {
     public Camera[] cameras;
     public int currentCameraIndex;
+    private Camera currentCamera;
 
     void Start()
     {
@@ -13,27 +14,38 @@ public class ChangeCameraScript : MonoBehaviour
         {
             cameras[i].gameObject.SetActive(false);
         }
+        currentCamera = cameras[currentCameraIndex];
     }
 
     public void ChangeCameraAngleRight()
     {
-        cameras[currentCameraIndex].gameObject.SetActive(false);
+        currentCamera.gameObject.SetActive(false);
 
         currentCameraIndex = (currentCameraIndex + 1) % cameras.Length;
 
-        cameras[currentCameraIndex].gameObject.SetActive(true);
+        currentCamera = cameras[currentCameraIndex];
+
+        currentCamera.gameObject.SetActive(true);
     }
 
     public void ChangeCameraAngleLeft()
     {
-        cameras[currentCameraIndex].gameObject.SetActive(false);
+        currentCamera.gameObject.SetActive(false);
 
         currentCameraIndex--;
         if (currentCameraIndex < 0)
         {
             currentCameraIndex = cameras.Length - 1;
+            currentCamera = cameras[currentCameraIndex];
         }
 
-        cameras[currentCameraIndex].gameObject.SetActive(true);
+        currentCamera.gameObject.SetActive(true);
+    }
+
+    public void ChangeToSpecificCamera(Camera camera)
+    {
+        currentCamera.gameObject.SetActive(false);
+        currentCamera = camera;
+        currentCamera.gameObject.SetActive(true);
     }
 }
