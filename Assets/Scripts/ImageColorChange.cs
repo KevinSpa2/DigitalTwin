@@ -26,8 +26,14 @@ public class NewBehaviourScript : MonoBehaviour
     {
         // yPosition to start placing the status buttons
         int yPosition = 940;
-        // List containing the required labels for the status buttons, this still needs to be made modular/scalable
-        List<string> components = new List<string>{"Grijper", "Loopband", "Toren", "Boom"};
+        // List containing the required labels for the status buttons
+        List<string> components = new List<string>();
+        for(int i = 0; i < controller.GetComponent<Transform>().childCount; i++)
+        {
+            // We get the names from the 3D model
+            GameObject child = controller.GetComponent<Transform>().GetChild(i).gameObject;
+            components.Add(child.name);
+        }
         
         // For loop creates the correct number of buttons, background box size needs to be reliant on the number of components in the status bar
         for(int i = 0; i < components.Count; i++)
@@ -53,6 +59,18 @@ public class NewBehaviourScript : MonoBehaviour
         // Controleer of er acties worden uitgevoerd in de WarehouseController voor de grijper
         if (controller.GetComponent<WarehouseController>().isXMoving)
         {
+            statusButtons[1].GetStatusButtonImage().sprite = statusButtonOrange;
+            statusButtons[1].SetStatusText("busy");
+        }
+        else
+        {
+            statusButtons[1].GetStatusButtonImage().sprite = statusButtonGreen;
+            statusButtons[1].SetStatusText("ok");
+        }
+
+        // Controleer of er acties worden uitgevoerd in de WarehouseController voor de Boom
+        if (controller.GetComponent<WarehouseController>().isYMoving)
+        {
             statusButtons[0].GetStatusButtonImage().sprite = statusButtonOrange;
             statusButtons[0].SetStatusText("busy");
         }
@@ -62,8 +80,8 @@ public class NewBehaviourScript : MonoBehaviour
             statusButtons[0].SetStatusText("ok");
         }
 
-        // Controleer of er acties worden uitgevoerd in de WarehouseController voor de Boom
-        if (controller.GetComponent<WarehouseController>().isYMoving)
+        // Controleer of er acties worden uitgevoerd in de WarehouseController voor de Toren
+        if (controller.GetComponent<WarehouseController>().isZMoving)
         {
             statusButtons[3].GetStatusButtonImage().sprite = statusButtonOrange;
             statusButtons[3].SetStatusText("busy");
@@ -71,19 +89,7 @@ public class NewBehaviourScript : MonoBehaviour
         else
         {
             statusButtons[3].GetStatusButtonImage().sprite = statusButtonGreen;
-            statusButtons[3].SetStatusText("ok");
-        }
-
-        // Controleer of er acties worden uitgevoerd in de WarehouseController voor de Toren
-        if (controller.GetComponent<WarehouseController>().isZMoving)
-        {
-            statusButtons[2].GetStatusButtonImage().sprite = statusButtonOrange;
-            statusButtons[2].SetStatusText("busy");
-        }
-        else
-        {
-            statusButtons[2].GetStatusButtonImage().sprite = statusButtonGreen;
-            statusButtons[2].SetStatusText("ok");
+            statusButtons[3 ].SetStatusText("ok");
         }
 
     }
