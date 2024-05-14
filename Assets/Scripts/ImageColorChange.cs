@@ -7,19 +7,23 @@ using TMPro;
 public class NewBehaviourScript : MonoBehaviour
 {
     // Warehousecontroller
-    public GameObject controller;
+    [SerializeField]
+    private GameObject controller;
 
     // Different button states
-    public Sprite statusButtonOrange, statusButtonGreen;
+    [SerializeField]
+    private Sprite statusButtonOrange, statusButtonGreen, statusButtonRed;
 
     // Prefab for status button generation
-    public GameObject statusButtonPrefab;
+    [SerializeField]
+    private GameObject statusButtonPrefab;
 
     // Parent of the status buttons
-    public Transform statusBar;
+    [SerializeField]
+    private Transform statusBar;
 
     // List which gets filled with the status buttons
-    public List<StatusButton> statusButtons = new List<StatusButton>();
+    private List<StatusButton> statusButtons = new List<StatusButton>();
 
     // Upon starting the program
     void Awake()
@@ -49,8 +53,6 @@ public class NewBehaviourScript : MonoBehaviour
             // Change yPosition for the next button to be placed
             yPosition -= 55;
         }
-
-
     }
 
     //Update is called once per frame
