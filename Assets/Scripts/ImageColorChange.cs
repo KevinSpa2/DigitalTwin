@@ -20,7 +20,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     // Parent of the status buttons
     [SerializeField]
-    private Transform statusBar;
+    private Transform statusBar, statusBackground;
 
     // List which gets filled with the status buttons
     private List<StatusButton> statusButtons = new List<StatusButton>();
@@ -53,6 +53,8 @@ public class NewBehaviourScript : MonoBehaviour
             // Change yPosition for the next button to be placed
             yPosition -= 55;
         }
+
+        statusBackground.GetComponent<RectTransform>().sizeDelta = new Vector2(262, 130 + components.Count * 40);
     }
 
     //Update is called once per frame

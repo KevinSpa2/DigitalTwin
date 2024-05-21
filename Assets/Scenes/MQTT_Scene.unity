@@ -3825,7 +3825,7 @@ MonoBehaviour:
   statusButtonRed: {fileID: 21300000, guid: b47b925b44ee57d48bdf2e7664c673a4, type: 3}
   statusButtonPrefab: {fileID: 1846499830179613526, guid: 3f89756d87a667b41b2bd0fc7e328c5f, type: 3}
   statusBar: {fileID: 1376560177}
-  statusButtons: []
+  statusBackground: {fileID: 1611943627}
 --- !u!4 &616278277
 Transform:
   m_ObjectHideFlags: 0
@@ -8552,7 +8552,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 695799d87d4390940b2a3e9f5eecf5af, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
