@@ -14,6 +14,8 @@ public class ChangeCameraScript : MonoBehaviour
         {
             cameras[i].gameObject.SetActive(false);
         }
+
+        currentCameraIndex = 0;
         currentCamera = cameras[currentCameraIndex];
     }
 
@@ -30,15 +32,16 @@ public class ChangeCameraScript : MonoBehaviour
 
     public void ChangeCameraAngleLeft()
     {
+        if (cameras.Length == 0) return;
+
         currentCamera.gameObject.SetActive(false);
 
         currentCameraIndex--;
         if (currentCameraIndex < 0)
         {
             currentCameraIndex = cameras.Length - 1;
-            currentCamera = cameras[currentCameraIndex];
         }
-
+        currentCamera = cameras[currentCameraIndex];
         currentCamera.gameObject.SetActive(true);
     }
 
