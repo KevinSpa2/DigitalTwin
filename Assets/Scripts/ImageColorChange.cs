@@ -4,8 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro; 
 
-public class NewBehaviourScript : MonoBehaviour
+public class ImageColorChange : MonoBehaviour
 {
+    const int STATUS_BAR_ELEMENT_SIZE = 130;
+    const int STATUS_BAR_ELEMENT_PADDING = 55;
+    const int STATUS_BAR_BACKGROUND_WIDTH = 262;
+    const string STATUS_BAR_BUSY_TEXT = "busy";
+    const string STATUS_BAR_OK_TEXT = "ok";
+
     // Warehousecontroller
     [SerializeField]
     private GameObject controller;
@@ -43,7 +49,7 @@ public class NewBehaviourScript : MonoBehaviour
         for(int i = 0; i < components.Count; i++)
         {
             // Create the object
-            GameObject status = Instantiate(statusButtonPrefab, new Vector3(130, yPosition, 0), new Quaternion(0, 0, 0, 0), statusBar);
+            GameObject status = Instantiate(statusButtonPrefab, new Vector3(STATUS_BAR_ELEMENT_SIZE, yPosition, 0), new Quaternion(0, 0, 0, 0), statusBar);
             // Add object to the statusButtons list
             this.statusButtons.Add(status.GetComponent<StatusButton>());
             // Set name
@@ -51,10 +57,10 @@ public class NewBehaviourScript : MonoBehaviour
             // Set status
             statusButtons[i].SetStatusText("ok");
             // Change yPosition for the next button to be placed
-            yPosition -= 55;
+            yPosition -= STATUS_BAR_ELEMENT_PADDING;
         }
 
-        statusBackground.GetComponent<RectTransform>().sizeDelta = new Vector2(262, 130 + components.Count * 40);
+        statusBackground.GetComponent<RectTransform>().sizeDelta = new Vector2(STATUS_BAR_BACKGROUND_WIDTH, STATUS_BAR_ELEMENT_SIZE + components.Count * 40);
     }
 
     //Update is called once per frame
@@ -64,36 +70,36 @@ public class NewBehaviourScript : MonoBehaviour
         if (controller.GetComponent<WarehouseController>().isXMoving)
         {
             statusButtons[1].GetStatusButtonImage().sprite = statusButtonOrange;
-            statusButtons[1].SetStatusText("busy");
+            statusButtons[1].SetStatusText(STATUS_BAR_BUSY_TEXT);
         }
         else
         {
             statusButtons[1].GetStatusButtonImage().sprite = statusButtonGreen;
-            statusButtons[1].SetStatusText("ok");
+            statusButtons[1].SetStatusText(STATUS_BAR_OK_TEXT);
         }
 
         // Controleer of er acties worden uitgevoerd in de WarehouseController voor de Boom
         if (controller.GetComponent<WarehouseController>().isYMoving)
         {
             statusButtons[0].GetStatusButtonImage().sprite = statusButtonOrange;
-            statusButtons[0].SetStatusText("busy");
+            statusButtons[0].SetStatusText(STATUS_BAR_BUSY_TEXT);
         }
         else
         {
             statusButtons[0].GetStatusButtonImage().sprite = statusButtonGreen;
-            statusButtons[0].SetStatusText("ok");
+            statusButtons[0].SetStatusText(STATUS_BAR_OK_TEXT);
         }
 
         // Controleer of er acties worden uitgevoerd in de WarehouseController voor de Toren
         if (controller.GetComponent<WarehouseController>().isZMoving)
         {
             statusButtons[3].GetStatusButtonImage().sprite = statusButtonOrange;
-            statusButtons[3].SetStatusText("busy");
+            statusButtons[3].SetStatusText(STATUS_BAR_BUSY_TEXT);
         }
         else
         {
             statusButtons[3].GetStatusButtonImage().sprite = statusButtonGreen;
-            statusButtons[3 ].SetStatusText("ok");
+            statusButtons[3 ].SetStatusText(STATUS_BAR_OK_TEXT);
         }
 
     }
