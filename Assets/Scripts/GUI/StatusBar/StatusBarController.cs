@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro; 
 
-public class ImageColorChange : MonoBehaviour
+public class StatusBarController : MonoBehaviour
 {
     const int STATUS_BAR_ELEMENT_SIZE = 130;
     const int STATUS_BAR_ELEMENT_PADDING = 55;
@@ -38,7 +38,7 @@ public class ImageColorChange : MonoBehaviour
         int yPosition = 940;
         // List containing the required labels for the status buttons
         List<string> components = new List<string>();
-        for(int i = 0; i < controller.GetComponent<Transform>().childCount; i++)
+        for (int i = 0; i < controller.GetComponent<Transform>().childCount; i++)
         {
             // We get the names from the 3D model
             GameObject child = controller.GetComponent<Transform>().GetChild(i).gameObject;
@@ -46,7 +46,7 @@ public class ImageColorChange : MonoBehaviour
         }
         
         // For loop creates the correct number of buttons, background box size needs to be reliant on the number of components in the status bar
-        for(int i = 0; i < components.Count; i++)
+        for (int i = 0; i < components.Count; i++)
         {
             // Create the object
             GameObject status = Instantiate(statusButtonPrefab, new Vector3(STATUS_BAR_ELEMENT_SIZE, yPosition, 0), new Quaternion(0, 0, 0, 0), statusBar);
@@ -66,7 +66,7 @@ public class ImageColorChange : MonoBehaviour
     //Update is called once per frame
     void Update()
     {
-        // Controleer of er acties worden uitgevoerd in de WarehouseController voor de grijper
+        // Check for actions in the warehousecontroller for the greifer
         if (controller.GetComponent<WarehouseController>().isXMoving)
         {
             statusButtons[1].GetStatusButtonImage().sprite = statusButtonOrange;
@@ -78,7 +78,7 @@ public class ImageColorChange : MonoBehaviour
             statusButtons[1].SetStatusText(STATUS_BAR_OK_TEXT);
         }
 
-        // Controleer of er acties worden uitgevoerd in de WarehouseController voor de Boom
+        // Check for actions in the warehousecontroller for the ausleger
         if (controller.GetComponent<WarehouseController>().isYMoving)
         {
             statusButtons[0].GetStatusButtonImage().sprite = statusButtonOrange;
@@ -90,7 +90,7 @@ public class ImageColorChange : MonoBehaviour
             statusButtons[0].SetStatusText(STATUS_BAR_OK_TEXT);
         }
 
-        // Controleer of er acties worden uitgevoerd in de WarehouseController voor de Toren
+        // Check for actions in the warehousecontroller for the turm
         if (controller.GetComponent<WarehouseController>().isZMoving)
         {
             statusButtons[3].GetStatusButtonImage().sprite = statusButtonOrange;

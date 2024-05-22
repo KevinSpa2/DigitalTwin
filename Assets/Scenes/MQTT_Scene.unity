@@ -3801,7 +3801,7 @@ GameObject:
   - component: {fileID: 616278277}
   - component: {fileID: 616278276}
   m_Layer: 0
-  m_Name: ImageColorChange
+  m_Name: StatusBarManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
