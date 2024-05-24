@@ -34,7 +34,7 @@ Use the MQTTX client to send messages to the digital twin. You will need to conn
 
 #### Available data to send:
 
-```json
+```s
 moveTurm:
     - 1: Right column
     - 2: Middle column
