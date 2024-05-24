@@ -16,7 +16,8 @@ public class ShelfManager : MonoBehaviour
     // Ddd a value to the array, check for duplicates first
     public void AddValue(string valueToAdd)
     {
-        if (SearchValue(valueToAdd))
+
+        if (SearchValueFromString(valueToAdd))
         {
             Debug.Log($"Value '{valueToAdd}' already exists in the array. Not adding duplicate.");
             return;
@@ -27,7 +28,7 @@ public class ShelfManager : MonoBehaviour
             if (shelfArray[i] == null) 
             {
                 shelfArray[i] = valueToAdd;
-                // Debug.Log($"Added value '{valueToAdd}' at index {i}.");
+                Debug.Log($"Added value '{valueToAdd}' at index {i}.");
                 return; 
             }
         }
@@ -59,9 +60,39 @@ public class ShelfManager : MonoBehaviour
         }
     }
 
-    // Search for a specific value in the array
-    public bool SearchValue(string valueToSearch)
+    public bool SearchValueFromString(string value) 
     {
+        for (int i = 0; i < shelfArray.Length; i++)
+        {
+            if (shelfArray[i] == value)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Search for a specific value in the array
+    public bool SearchValue(int column, int level)
+    {
+        string columnValue = string.Empty;
+
+        switch (column)
+        {
+            case 1:
+                columnValue = "A";
+                break;
+            case 2:
+                columnValue = "B";
+                break;
+            case 3:
+                columnValue = "C";
+                break;
+        }
+
+        string valueToSearch = columnValue + "" + level;
+        Debug.Log("SEARCHING FOR: " + valueToSearch);
+
         for (int i = 0; i < shelfArray.Length; i++)
         {
             if (shelfArray[i] == valueToSearch)

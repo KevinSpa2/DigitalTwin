@@ -69,8 +69,8 @@ public class SignalReceiver : MonoBehaviour
     [System.Serializable]
     public class MessageData
     {
-        public string moveTurm;
-        public string moveAusleger;
-        public string moveGripper;
+        public int moveTurm;
+        public int moveAusleger;
+        public bool moveGripper;
     }
 }

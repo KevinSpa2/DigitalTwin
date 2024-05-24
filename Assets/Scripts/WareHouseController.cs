@@ -70,15 +70,15 @@ public class WarehouseController : MonoBehaviour
     } 
 
     // Move objects to specified positions within the range of 0 to 2200
-    public void MoveTurmToTarget(string moveZInstruction, System.Action onZMovementComplete)
+    public void MoveTurmToTarget(int moveZInstruction, System.Action onZMovementComplete)
     {
         float zPosition;
 
         // Check if moveInstruction is  numeric 
-        if (float.TryParse(moveZInstruction, out zPosition))
+        if (moveZInstruction > 3 && moveZInstruction < 2200)
         {
             // If moveInstruction is a numeric value, clamp it in the range of 0 and 2200
-            zPosition = Mathf.Clamp(zPosition, minZPosition, maxZPosition);
+            zPosition = moveZInstruction;
             correctTurmLocation = false;
         }
         // Predefined locations
@@ -86,22 +86,19 @@ public class WarehouseController : MonoBehaviour
         {
             switch (moveZInstruction)
             {
-                case "A":
-                case "a":
+                case 1:
                     zPosition = 810f;
                     correctTurmLocation = true;
                     break;
-                case "B":
-                case "b":
+                case 2:
                     zPosition = 1455f;
                     correctTurmLocation = true;
                     break;
-                case "C":
-                case "c":
+                case 3:
                     zPosition = 2100f;
                     correctTurmLocation = true;
                     break;
-                case "base":
+                case 0:
                     zPosition = 0f;
                     correctTurmLocation = true;
                     break;
@@ -125,29 +122,29 @@ public class WarehouseController : MonoBehaviour
         }
     }
     
-    public void MoveAuslegerToTarget(string moveYInstruction, System.Action onYMovementComplete)
+    public void MoveAuslegerToTarget(int moveYInstruction, System.Action onYMovementComplete)
     {
         float yPosition;
 
         // Check if moveInstruction is  numeric 
-        if (float.TryParse(moveYInstruction, out yPosition) && yPosition > 3)
+        if (moveYInstruction > 3 && moveYInstruction < 1000)
         {
             // If moveInstruction is a numeric value, clamp it in the range of 0 and 1000
-            yPosition = Mathf.Clamp(yPosition, minYPosition, maxYPosition);
+            yPosition = moveYInstruction;
         }
         else
         {
             switch (moveYInstruction)
             {
-                case "1":
+                case 1:
                     yPosition = topLevel;
                     correctAuslegerLocation = true;
                     break;
-                case "2":
+                case 2:
                     yPosition = midLevel;
                     correctAuslegerLocation = true;
                     break;
-                case "3":
+                case 3:
                     yPosition = bottomLevel;
                     correctAuslegerLocation = true;
                     break;
@@ -168,37 +165,16 @@ public class WarehouseController : MonoBehaviour
         }
     }
 
-    public void MoveGreiferToTarget(string moveXInstruction, string column, string level)
+    public void MoveGreiferToTarget(bool startPickUp, int column, int level)
     {
-        float xPosition;
-        bool shouldExtend = true;
-        switch (moveXInstruction)
-        {
-            case "R":
-            case "r":
-            case "rack":
-            case "Rack":
-                xPosition = maxGreiferXPosition;
-                break;
-            case "A":
-            case "a":
-            case "assembly":
-            case "Assembly":
-                xPosition = maxGreiferXPosition + 0.3f;
-                break;
-            default:
-                xPosition = 0f;
-                shouldExtend = false;
-                shelfManager.DisplayValues();
-                break;
-        }   
+        float xPosition = maxGreiferXPosition; 
         
         Debug.Log(column+level);
 
         // If moveInstruction is a numeric value, map it to the range defined by minXPosition and maxXPosition
-        if (!isXMoving && shouldExtend && correctAuslegerLocation && correctTurmLocation)
+        if (!isXMoving && startPickUp && correctAuslegerLocation && correctTurmLocation)
         {
-            if (shelfManager.SearchValue(column+level) && holdingItem)
+            if (shelfManager.SearchValue(column, level) && holdingItem)
             {
                 Debug.Log("Shelf already occupied!");
             }
