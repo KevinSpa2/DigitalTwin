@@ -26,35 +26,34 @@ Use the MQTTX client to send messages to the digital twin. You will need to conn
 
 ```json
 {
-  "moveTurm": "A",
-  "moveAusleger": "1",
-  "moveGripper": "r"
+  "moveTurm": 1,
+  "moveAusleger": 2,
+  "moveGripper": true
 }
 ```
 
 #### Available data to send:
 
-```sql
+```json
 moveTurm:
-    - "A" or "a": Right column
-    - "B" or "b": Middle column
-    - "C" or "c": Left column
-    - "Base" or "base": Right
+    - 1: Right column
+    - 2: Middle column
+    - 3: Left column
+    - 0: Right
     Value between:
-        - "0" (Start, Right) 
-        - "2200" (End, Left)
+        - 4 (Start, Right) 
+        - 2200 (End, Left)
 
 moveAusleger:
-    - "1": Top level
-    - "2": Mid level
-    - "3": Bottom level
+    - 1: Top level
+    - 2: Mid level
+    - 3: Bottom level
     Value between:
-    - "4" - Bottom
-    - "1000" - Top
+    - 4 - Bottom
+    - 1000 - Top
 
 moveGripper:
-    - "R", "r", "Rack", or "rack": Rack position
-    - "A", "a", "Assembly", or "assembly": Assembly position
+    - true or false : Should pick up, or not.
 
 
 ```
