@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2353,7 +2353,6 @@ GameObject:
   - component: {fileID: 412723979}
   - component: {fileID: 412723978}
   - component: {fileID: 412723977}
-  - component: {fileID: 412723981}
   m_Layer: 5
   m_Name: Close Controls Button
   m_TagString: Untagged
@@ -2392,7 +2391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61acd95b424ca974c9c0c4e86ce14e20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popUp: {fileID: 0}
+  popUp: {fileID: 62299244}
 --- !u!114 &412723978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2449,18 +2448,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 412723981}
-        m_TargetAssemblyTypeName: PopUp, Assembly-CSharp
-        m_MethodName: openPopUp
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &412723979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2499,19 +2486,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 412723975}
   m_CullTransparentMesh: 1
---- !u!114 &412723981
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 412723975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61acd95b424ca974c9c0c4e86ce14e20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  popUp: {fileID: 0}
 --- !u!1 &415081246
 GameObject:
   m_ObjectHideFlags: 0
@@ -2823,7 +2797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61acd95b424ca974c9c0c4e86ce14e20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popUp: {fileID: 0}
+  popUp: {fileID: 1290058763}
 --- !u!114 &436438310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9617,7 +9591,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61acd95b424ca974c9c0c4e86ce14e20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popUp: {fileID: 0}
+  popUp: {fileID: 1290058763}
 --- !u!1 &1779687330
 GameObject:
   m_ObjectHideFlags: 0
@@ -11474,7 +11448,6 @@ GameObject:
   - component: {fileID: 2131425298}
   - component: {fileID: 2131425297}
   - component: {fileID: 2131425300}
-  - component: {fileID: 2131425301}
   m_Layer: 5
   m_Name: Controls button
   m_TagString: Untagged
@@ -11558,7 +11531,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2131425301}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PopUp, Assembly-CSharp
         m_MethodName: closePopUp
         m_Mode: 1
@@ -11620,20 +11593,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61acd95b424ca974c9c0c4e86ce14e20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popUp: {fileID: 0}
---- !u!114 &2131425301
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2131425295}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61acd95b424ca974c9c0c4e86ce14e20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  popUp: {fileID: 0}
+  popUp: {fileID: 62299244}
 --- !u!1 &2134653275 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2548507034547125466, guid: 81d5559c9effd8e42a53482e95ca1fec, type: 3}
