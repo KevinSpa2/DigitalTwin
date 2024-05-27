@@ -8,12 +8,12 @@ public class PopUp : MonoBehaviour
 {
     public GameObject popUp;
 
-    public void openPopUp()
+    public void OpenPopUp()
     {
         popUp.SetActive(true);
     }
 
-    public void closePopUp()
+    public void ClosePopUp()
     {
         popUp.SetActive(false);
     }
