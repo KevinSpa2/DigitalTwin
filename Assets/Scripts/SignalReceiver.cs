@@ -2,29 +2,48 @@ using System.Collections;
 using System.Collections.Generic;
 using M2MqttUnity;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SignalReceiver : MonoBehaviour
 {
     public WarehouseController warehouseController;
 
+    [SerializeField]
+    private Toggle toggle;
+
     private void Start()
     {
-        M2MqttUnityClient mqttClient = FindObjectOfType<M2MqttUnityClient>();
-
-        warehouseController = FindObjectOfType<WarehouseController>();
-
-        if (mqttClient != null)
+        // toggle = GetComponent<Toggle>();
+        toggle.onValueChanged.AddListener(OnSwitch);
+        if (toggle.isOn)
         {
-            mqttClient.MessageReceived += OnMessageReceived;
+            OnSwitch(toggle.isOn);
         }
+    }
+    private void OnSwitch(bool isOn)
+    {
+        if (!isOn)
+        {
+            M2MqttUnityClient mqttClient = FindObjectOfType<M2MqttUnityClient>();
+            warehouseController = FindObjectOfType<WarehouseController>();
 
-        if (warehouseController != null)
-        {
-            Debug.Log("Found warehouse script: " + warehouseController.name);
-        }
-        else
-        {
-            Debug.LogWarning("Could not find WarehouseController script!");
+            if (mqttClient != null)
+            {
+                mqttClient.MessageReceived += OnMessageReceived;
+            }
+            else
+            {
+                Debug.LogWarning("Could not find M2MqttUnityClient script!");
+            }
+
+            if (warehouseController != null)
+            {
+                Debug.Log("Found warehouse script: " + warehouseController.name);
+            }
+            else
+            {
+                Debug.LogWarning("Could not find WarehouseController script!");
+            }
         }
     }
 
