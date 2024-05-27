@@ -454,7 +454,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 76370203}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1132608536}
+        m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
+        m_MethodName: MoveAuslegerManually
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1132608536}
+        m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
+        m_MethodName: MoveTurmManually
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &76370203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1119,7 +1143,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 217170874}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1132608536}
+        m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
+        m_MethodName: MoveAuslegerManually
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1132608536}
+        m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
+        m_MethodName: MoveTurmManually
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &217170874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3636,7 +3684,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 579859777}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1132608536}
+        m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
+        m_MethodName: MoveAuslegerManually
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1132608536}
+        m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
+        m_MethodName: MoveTurmManually
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &579859777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4903,7 +4975,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 888228741}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1132608536}
+        m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
+        m_MethodName: MoveAuslegerManually
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1132608536}
+        m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
+        m_MethodName: MoveTurmManually
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &888228741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6080,7 +6176,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1121028511}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1132608536}
+        m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
+        m_MethodName: MoveAuslegerManually
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1132608536}
+        m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
+        m_MethodName: MoveTurmManually
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1121028511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6211,6 +6331,81 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!1 &1132608535
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1132608537}
+  - component: {fileID: 1132608536}
+  m_Layer: 0
+  m_Name: WarehouseController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1132608536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1132608535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bc896fb7b25f5c41bd66ab5b587d683, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turm: {fileID: 2084218851}
+  ausleger: {fileID: 1921452083}
+  greifer: {fileID: 1327735230}
+  holdingItem: 0
+  moveSpeed: 10
+  topLevel: 925
+  midLevel: 520
+  bottomLevel: 110
+  minZPosition: 0
+  maxZPosition: 2200
+  minYPosition: 0
+  maxYPosition: 1000
+  minTurmZPosition: 37.03607
+  maxTurmZPosition: 67.64607
+  minAuslegerZPosition: 34.17
+  maxAuslegerZPosition: 64.78
+  minGreiferZPosition: 29.43
+  maxGreiferZPosition: 60.04
+  minAuslegerYPosition: 6.101268
+  maxAuslegerYPosition: 20.64827
+  minGreiferYPosition: 6.857
+  maxGreiferYPosition: 21.404
+  minGreiferXPosition: -11.17033
+  maxGreiferXPosition: -7.4
+  isZMoving: 0
+  isYMoving: 0
+  isXMoving: 0
+  correctTurmLocation: 0
+  correctAuslegerLocation: 0
+  movingObjects: {fileID: 0}
+  shelfManager: {fileID: 0}
+--- !u!4 &1132608537
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1132608535}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.3905602, y: 14.546602, z: 43.01}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1158085389
 GameObject:
   m_ObjectHideFlags: 0
@@ -6910,7 +7105,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1280201692}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1132608536}
+        m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
+        m_MethodName: MoveAuslegerManually
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1132608536}
+        m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
+        m_MethodName: MoveTurmManually
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1280201692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7361,7 +7580,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1391199721}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1132608536}
+        m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
+        m_MethodName: MoveAuslegerManually
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1132608536}
+        m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
+        m_MethodName: MoveTurmManually
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1391199721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8926,7 +9169,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1614649484}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1132608536}
+        m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
+        m_MethodName: MoveAuslegerManually
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1132608536}
+        m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
+        m_MethodName: MoveTurmManually
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1614649484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9910,7 +10177,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1882631145}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1132608536}
+        m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
+        m_MethodName: MoveAuslegerManually
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1132608536}
+        m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
+        m_MethodName: MoveTurmManually
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1882631145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10377,7 +10668,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1932977733}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1132608536}
+        m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
+        m_MethodName: MoveAuslegerManually
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1132608536}
+        m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
+        m_MethodName: MoveTurmManually
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1932977733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11823,3 +12138,5 @@ SceneRoots:
   - {fileID: 616278277}
   - {fileID: 355583642}
   - {fileID: 550467152}
+  - {fileID: 1132608537}
+

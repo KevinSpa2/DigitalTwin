@@ -69,6 +69,16 @@ public class WarehouseController : MonoBehaviour
         shelfManager = FindObjectOfType<ShelfManager>();
     } 
 
+    public void MoveTurmManually(int movement)
+    {
+        MoveTurmToTarget(movement, null);
+    }
+
+    public void MoveAuslegerManually(int movement)
+    {
+        MoveAuslegerToTarget(movement, null);
+    }
+
     // Move objects to specified positions within the range of 0 to 2200
     public void MoveTurmToTarget(int moveZInstruction, System.Action onZMovementComplete)
     {
