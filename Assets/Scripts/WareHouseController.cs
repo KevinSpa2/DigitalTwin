@@ -49,6 +49,8 @@ public class WarehouseController : MonoBehaviour
     public float minGreiferXPosition = -11.17033f;
     public float maxGreiferXPosition = -7.4f;
 
+    public int currentZPosition = 0;
+    public int currentYPosition = 0;
 
     // Bools to track ongoing movement on all axis
     public bool isZMoving = false; 
@@ -79,6 +81,11 @@ public class WarehouseController : MonoBehaviour
         MoveAuslegerToTarget(movement, null);
     }
 
+    public void MoveGreiferManually()
+    {
+        MoveGreiferToTarget(shelfManager, currentZPosition, currentYPosition);
+    }
+
     // Move objects to specified positions within the range of 0 to 2200
     public void MoveTurmToTarget(int moveZInstruction, System.Action onZMovementComplete)
     {
@@ -98,18 +105,22 @@ public class WarehouseController : MonoBehaviour
             {
                 case 1:
                     zPosition = 810f;
+                    currentZPosition = 1;
                     correctTurmLocation = true;
                     break;
                 case 2:
                     zPosition = 1455f;
+                    currentZPosition = 2;
                     correctTurmLocation = true;
                     break;
                 case 3:
                     zPosition = 2100f;
+                    currentZPosition = 3;
                     correctTurmLocation = true;
                     break;
                 case 0:
                     zPosition = 0f;
+                    currentZPosition = 0;
                     correctTurmLocation = true;
                     break;
                 default:
@@ -148,14 +159,17 @@ public class WarehouseController : MonoBehaviour
             {
                 case 1:
                     yPosition = topLevel;
+                    currentYPosition = 1;
                     correctAuslegerLocation = true;
                     break;
                 case 2:
                     yPosition = midLevel;
+                    currentYPosition = 2;
                     correctAuslegerLocation = true;
                     break;
                 case 3:
                     yPosition = bottomLevel;
+                    currentYPosition = 3;
                     correctAuslegerLocation = true;
                     break;
                 default:
