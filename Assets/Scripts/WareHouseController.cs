@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Security.Cryptography;
 using UnityEngine;
@@ -49,8 +50,11 @@ public class WarehouseController : MonoBehaviour
     public float minGreiferXPosition = -11.17033f;
     public float maxGreiferXPosition = -7.4f;
 
+    // Ints to keep trackof the current position of the turm
     public int currentZPosition = 0;
     public int currentYPosition = 0;
+
+    public GameObject[] spawnableObjects;
 
     // Bools to track ongoing movement on all axis
     public bool isZMoving = false; 
@@ -84,6 +88,22 @@ public class WarehouseController : MonoBehaviour
     public void MoveGreiferManually()
     {
         MoveGreiferToTarget(shelfManager, currentZPosition, currentYPosition);
+    }
+
+    public void CreateContainer(string Color)
+    {
+        switch (Color)
+        {
+            case "red":
+                Instantiate(spawnableObjects[0], transform.position, spawnableObjects[0].transform.rotation);
+                break;
+            case "blue":
+                Instantiate(spawnableObjects[1], transform.position, spawnableObjects[1].transform.rotation);
+                break;
+            case "white":
+                Instantiate(spawnableObjects[2], transform.position, spawnableObjects[2].transform.rotation);
+                break;
+        }
     }
 
     // Move objects to specified positions within the range of 0 to 2200
