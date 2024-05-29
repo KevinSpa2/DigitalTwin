@@ -10,19 +10,22 @@ using UnityEditor;
 public class ConfigurationManager : MonoBehaviour
 {
     [SerializeField]
-    private Transform modelParent;
+    private Transform modelParent, modelOptionsParent;
 
     [SerializeField]
-    private TMP_Text selectedFileText;
+    private GameObject modelOptionPrefab;
+
+    [SerializeField]
+    private List<GameObject> models;
 
     void Awake(){
-        if(modelParent.childCount > 0){
-            GameObject model = modelParent.GetChild(0).gameObject;
-            selectedFileText.text = "Huidig 3D-model: " + model.name;
-        }
-        else{
-            selectedFileText.text = "Geen bestand geselecteerd";
-        }
+        // foreach(model : models){
+        //     Instantiate(modelOptionPrefab);
+        // }
+    }
+
+    public void addModel(GameObject model){
+        this.models.Add(model);
     }
 
 }
