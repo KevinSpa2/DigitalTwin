@@ -2,29 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using M2MqttUnity;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SignalReceiver : MonoBehaviour
 {
     public WarehouseController warehouseController;
+    public M2MqttUnityClient mqttClient;
 
-    private void Start()
+    [SerializeField]
+    private GameObject toggleObject;
+
+    void Awake()
     {
-        M2MqttUnityClient mqttClient = FindObjectOfType<M2MqttUnityClient>();
+        Toggle toggle = toggleObject.GetComponent<Toggle>();
+        if (toggle == null)
+        {
+            Debug.LogError("Toggle component niet gevonden!");
+            return;
+        }
 
-        warehouseController = FindObjectOfType<WarehouseController>();
+        toggle.onValueChanged.AddListener(delegate {
+            OnSwitch(toggle);
+        });
+    }
 
+    private void OnSwitch(Toggle toggle)
+    {
         if (mqttClient != null)
         {
-            mqttClient.MessageReceived += OnMessageReceived;
-        }
-
-        if (warehouseController != null)
-        {
-            Debug.Log("Found warehouse script: " + warehouseController.name);
-        }
-        else
-        {
-            Debug.LogWarning("Could not find WarehouseController script!");
+            if (!toggle.isOn)
+            {
+                mqttClient.MessageReceived -= OnMessageReceived;
+            }
+            else
+            {
+                mqttClient.MessageReceived += OnMessageReceived;
+            }
         }
     }
 
@@ -41,8 +54,6 @@ public class SignalReceiver : MonoBehaviour
                 {
                     warehouseController.MoveTurmToTarget(data.moveTurm, () =>
                     {
-                        
-                        // Executes when Z-axis movement completes
                         warehouseController.MoveAuslegerToTarget(data.moveAusleger, () =>
                         {
                             warehouseController.MoveGreiferToTarget(data.moveGripper, data.moveTurm, data.moveAusleger);
@@ -69,8 +80,8 @@ public class SignalReceiver : MonoBehaviour
     [System.Serializable]
     public class MessageData
     {
-        public string moveTurm;
-        public string moveAusleger;
-        public string moveGripper;
+        public int moveTurm;
+        public int moveAusleger;
+        public bool moveGripper;
     }
 }
