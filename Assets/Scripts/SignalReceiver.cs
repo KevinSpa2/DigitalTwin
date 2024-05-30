@@ -21,26 +21,20 @@ public class SignalReceiver : MonoBehaviour
             return;
         }
 
-        toggle.onValueChanged.AddListener(OnSwitch);
-
-        if (toggle.isOn)
-        {
-            OnSwitch(toggle.isOn);
-        }
+        toggle.onValueChanged.AddListener(delegate {
+            OnSwitch(toggle);
+        });
     }
 
-    private void OnSwitch(bool isOn)
+    private void OnSwitch(Toggle toggle)
     {
-        if (isOn)
+        if (mqttClient != null)
         {
-            if (mqttClient != null)
+            if (!toggle.isOn)
             {
                 mqttClient.MessageReceived -= OnMessageReceived;
             }
-        }
-        else
-        {
-            if (mqttClient != null)
+            else
             {
                 mqttClient.MessageReceived += OnMessageReceived;
             }
