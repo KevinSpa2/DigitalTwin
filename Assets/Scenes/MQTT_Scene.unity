@@ -2829,7 +2829,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d504a84fd1d6c7842b880ce399af2e17, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -43.1
+      value: -30.03
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d504a84fd1d6c7842b880ce399af2e17, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7282,7 +7282,6 @@ MonoBehaviour:
   topLevel: 925
   midLevel: 520
   bottomLevel: 110
-  beltLevel: 0
   minZPosition: 0
   maxZPosition: 2200
   minYPosition: 0
@@ -9194,7 +9193,6 @@ MonoBehaviour:
   topLevel: 925
   midLevel: 520
   bottomLevel: 110
-  beltLevel: 0
   minZPosition: 0
   maxZPosition: 2200
   minYPosition: 0
