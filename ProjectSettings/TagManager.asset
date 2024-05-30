@@ -7,6 +7,9 @@ TagManager:
   - Shelf
   - Container
   - Gripper
+  - Belt
+  - belt_back
+  - belt_start
   layers:
   - Default
   - TransparentFX

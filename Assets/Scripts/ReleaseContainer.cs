@@ -29,6 +29,10 @@ public class ReleaseContainer : MonoBehaviour
             {
                 warehouseController.shelfManager.RemoveValue(shelfName);
             }
+        } 
+        else if (collision.gameObject.CompareTag("Belt"))
+        {
+            transform.parent = null;
         }
     }
 
