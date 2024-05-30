@@ -12,20 +12,15 @@ public class SignalReceiver : MonoBehaviour
     [SerializeField]
     private GameObject toggleObject;
 
-    private Toggle toggle;
-
-    private void Awake()
+    void Awake()
     {
-        toggle = toggleObject.GetComponent<Toggle>();
+        Toggle toggle = toggleObject.GetComponent<Toggle>();
         if (toggle == null)
         {
             Debug.LogError("Toggle component niet gevonden!");
             return;
         }
-    }
 
-    private void Start()
-    {
         toggle.onValueChanged.AddListener(OnSwitch);
 
         if (toggle.isOn)

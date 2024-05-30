@@ -3715,7 +3715,6 @@ MonoBehaviour:
   warehouseController: {fileID: 1404323227}
   mqttClient: {fileID: 1490625465}
   toggleObject: {fileID: 1439968818}
-  toggle: {fileID: 1439968820}
 --- !u!4 &550467152
 Transform:
   m_ObjectHideFlags: 0
@@ -9456,7 +9455,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1490625466}
   - component: {fileID: 1490625465}
-  - component: {fileID: 1490625467}
   m_Layer: 0
   m_Name: MQTT
   m_TagString: Untagged
@@ -9499,22 +9497,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1490625467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1490625464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c290a60730b5974cac9cb84181c0f20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  warehouseController: {fileID: 0}
-  mqttClient: {fileID: 0}
-  toggleObject: {fileID: 0}
-  toggle: {fileID: 0}
 --- !u!1 &1499789580
 GameObject:
   m_ObjectHideFlags: 0
