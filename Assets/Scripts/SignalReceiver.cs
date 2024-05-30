@@ -10,18 +10,17 @@ public class SignalReceiver : MonoBehaviour
     public M2MqttUnityClient mqttClient;
 
     [SerializeField]
+    private GameObject toggleObject;
+
     private Toggle toggle;
 
     private void Awake()
     {
+        toggle = toggleObject.GetComponent<Toggle>();
         if (toggle == null)
         {
-            toggle = GetComponent<Toggle>();
-            if (toggle == null)
-            {
-                Debug.LogError("Toggle component niet gevonden!");
-                return;
-            }
+            Debug.LogError("Toggle component niet gevonden!");
+            return;
         }
     }
 
@@ -80,7 +79,7 @@ public class SignalReceiver : MonoBehaviour
         }
     }
 
-     private void OnDestroy()
+    private void OnDestroy()
     {
         M2MqttUnityClient mqttClient = FindObjectOfType<M2MqttUnityClient>();
         if (mqttClient != null)
