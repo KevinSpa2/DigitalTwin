@@ -7,42 +7,48 @@ using UnityEngine.UI;
 public class SignalReceiver : MonoBehaviour
 {
     public WarehouseController warehouseController;
+    public M2MqttUnityClient mqttClient;
 
     [SerializeField]
     private Toggle toggle;
 
+    private void Awake()
+    {
+        if (toggle == null)
+        {
+            toggle = GetComponent<Toggle>();
+            if (toggle == null)
+            {
+                Debug.LogError("Toggle component niet gevonden!");
+                return;
+            }
+        }
+    }
+
     private void Start()
     {
-        // toggle = GetComponent<Toggle>();
         toggle.onValueChanged.AddListener(OnSwitch);
+
         if (toggle.isOn)
         {
             OnSwitch(toggle.isOn);
         }
     }
+
     private void OnSwitch(bool isOn)
     {
-        if (!isOn)
+        if (isOn)
         {
-            M2MqttUnityClient mqttClient = FindObjectOfType<M2MqttUnityClient>();
-            warehouseController = FindObjectOfType<WarehouseController>();
-
+            if (mqttClient != null)
+            {
+                mqttClient.MessageReceived -= OnMessageReceived;
+            }
+        }
+        else
+        {
             if (mqttClient != null)
             {
                 mqttClient.MessageReceived += OnMessageReceived;
-            }
-            else
-            {
-                Debug.LogWarning("Could not find M2MqttUnityClient script!");
-            }
-
-            if (warehouseController != null)
-            {
-                Debug.Log("Found warehouse script: " + warehouseController.name);
-            }
-            else
-            {
-                Debug.LogWarning("Could not find WarehouseController script!");
             }
         }
     }
@@ -60,8 +66,6 @@ public class SignalReceiver : MonoBehaviour
                 {
                     warehouseController.MoveTurmToTarget(data.moveTurm, () =>
                     {
-                        
-                        // Executes when Z-axis movement completes
                         warehouseController.MoveAuslegerToTarget(data.moveAusleger, () =>
                         {
                             warehouseController.MoveGreiferToTarget(data.moveGripper, data.moveTurm, data.moveAusleger);
@@ -76,7 +80,7 @@ public class SignalReceiver : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+     private void OnDestroy()
     {
         M2MqttUnityClient mqttClient = FindObjectOfType<M2MqttUnityClient>();
         if (mqttClient != null)
