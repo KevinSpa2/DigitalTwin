@@ -33,6 +33,8 @@ public class ReleaseContainer : MonoBehaviour
         } 
         else if (collision.gameObject.CompareTag("Belt"))
         {
+            Debug.Log("Released container on BELT");
+            warehouseController.setHoldingItem(false);
             transform.parent = null;
         }
     }
@@ -52,7 +54,6 @@ public class ReleaseContainer : MonoBehaviour
                     Debug.Log("Released container");
                     onShelf = true;
                     warehouseController.setHoldingItem(false);
-                    Debug.Log("Set holdingItem to false");
                     warehouseController.shelfManager.AddValue(shelfName);
                     warehouseController.shelfManager.DisplayValues();
                 }
