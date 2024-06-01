@@ -19,7 +19,7 @@ public class ShelfManager : MonoBehaviour
 
         if (SearchValueFromString(valueToAdd))
         {
-            Debug.Log($"Value '{valueToAdd}' already exists in the array. Not adding duplicate.");
+            // Debug.Log($"Value '{valueToAdd}' already exists in the array. Not adding duplicate.");
             return;
         }
 
@@ -28,7 +28,7 @@ public class ShelfManager : MonoBehaviour
             if (shelfArray[i] == null) 
             {
                 shelfArray[i] = valueToAdd;
-                Debug.Log($"Added value '{valueToAdd}' at index {i}.");
+                // Debug.Log($"Added value '{valueToAdd}' at index {i}.");
                 return; 
             }
         }
@@ -50,12 +50,12 @@ public class ShelfManager : MonoBehaviour
     // Display all values in the array
     public void DisplayValues()
     {
-        Debug.Log("Values in the array:");
+        // Debug.Log("Values in the array:");
         for (int i = 0; i < shelfArray.Length; i++)
         {
             if (shelfArray[i] != null)
             {
-                Debug.Log($"Index {i}: {shelfArray[i]}");
+                // Debug.Log($"Index {i}: {shelfArray[i]}");
             }
         }
     }
@@ -91,12 +91,13 @@ public class ShelfManager : MonoBehaviour
         }
 
         string valueToSearch = columnValue + "" + level;
-        Debug.Log("SEARCHING FOR: " + valueToSearch);
+        // Debug.Log("SEARCHING FOR: " + valueToSearch);
 
         for (int i = 0; i < shelfArray.Length; i++)
         {
             if (shelfArray[i] == valueToSearch)
             {
+                // Debug.Log(valueToSearch + " FOUND!");
                 return true;
             }
         }

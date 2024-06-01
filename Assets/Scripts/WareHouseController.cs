@@ -11,7 +11,7 @@ public class WarehouseController : MonoBehaviour
     public Transform greifer;
 
     // Holding item
-    public bool holdingItem = false;
+    public bool holdingItem;
 
     // Movement speed of the objects
     public float moveSpeed = 1.0f;
@@ -74,6 +74,11 @@ public class WarehouseController : MonoBehaviour
         movingObjects = FindObjectOfType<MovingObjects>();
         shelfManager = FindObjectOfType<ShelfManager>();
     } 
+
+    public void setHoldingItem(bool setItem)
+    {
+        holdingItem = setItem;
+    }
 
     public void MoveTurmManually(int movement)
     {
@@ -213,11 +218,13 @@ public class WarehouseController : MonoBehaviour
     {
         float xPosition = maxGreiferXPosition; 
         
-        Debug.Log(column+level);
+        // Debug.Log("Holding item: " + holdingItem);
 
         // If moveInstruction is a numeric value, map it to the range defined by minXPosition and maxXPosition
         if (!isXMoving && startPickUp && correctAuslegerLocation && correctTurmLocation)
         {
+            Debug.Log("SEARCHVALUE: " + shelfManager.SearchValue(column, level));
+            Debug.Log("HOLDING ITEM: " + holdingItem);
             if (shelfManager.SearchValue(column, level) && holdingItem)
             {
                 Debug.Log("Shelf already occupied!");

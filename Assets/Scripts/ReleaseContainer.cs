@@ -22,13 +22,14 @@ public class ReleaseContainer : MonoBehaviour
         {
             transform.parent = collision.transform;
             // Set container's parent to the platform
-            Debug.Log("Attached to gripper");
-            warehouseController.holdingItem = true;
+            Debug.Log("Set holdingItem to true");
+            warehouseController.setHoldingItem(true);
             onShelf = false;
             if (shelfName != null)
             {
                 warehouseController.shelfManager.RemoveValue(shelfName);
             }
+            // Debug.Log(warehouseController.holdingItem);
         } 
         else if (collision.gameObject.CompareTag("Belt"))
         {
@@ -45,12 +46,13 @@ public class ReleaseContainer : MonoBehaviour
             {
                 if (!onShelf)
                 {
-                    Debug.Log("Container is in contact with shelf: " + shelfName);
+                    // Debug.Log("Container is in contact with shelf: " + shelfName);
                     // If the container is on the platform, release it
                     transform.parent = null;
                     Debug.Log("Released container");
                     onShelf = true;
-                    warehouseController.holdingItem = false;
+                    warehouseController.setHoldingItem(false);
+                    Debug.Log("Set holdingItem to false");
                     warehouseController.shelfManager.AddValue(shelfName);
                     warehouseController.shelfManager.DisplayValues();
                 }
