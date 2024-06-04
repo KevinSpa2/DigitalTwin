@@ -10,6 +10,10 @@ TagManager:
   - Belt
   - belt_back
   - belt_start
+  - Align
+  - Can
+  - g4a sun
+  - g4a secondlight
   layers:
   - Default
   - TransparentFX
@@ -24,16 +28,16 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - rvMUSensor
+  - rvMUTransport
+  - rvSensor
+  - rvTransport
+  - rvMU
+  - rvSnapping
+  - rvSimDynamic
+  - rvSimStatic
+  - rvSelection
+  - rvSceneMesh
   - 
   - 
   - 
