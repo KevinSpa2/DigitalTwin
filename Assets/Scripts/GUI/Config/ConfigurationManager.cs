@@ -13,19 +13,16 @@ public class ConfigurationManager : MonoBehaviour
     private Transform modelParent, modelOptionsParent;
 
     [SerializeField]
-    private GameObject modelOptionPrefab;
-
-    [SerializeField]
     private List<GameObject> models;
 
-    void Awake(){
-        // foreach(model : models){
-        //     Instantiate(modelOptionPrefab);
-        // }
-    }
+    public void SelectModel(int index)
+    {
+        for(int i = 0; i < modelParent.transform.childCount; i++){
+            Destroy(modelParent.transform.GetChild(i).gameObject);     
+        }   
 
-    public void addModel(GameObject model){
-        this.models.Add(model);
+        GameObject selectedModel = Instantiate(models[index]);
+        selectedModel.transform.SetParent(modelParent);
     }
 
 }
