@@ -1,0 +1,158 @@
+using UnityEngine;
+using TwinCAT.Ads;
+using System;
+
+public class PlcController : MonoBehaviour
+{
+    public string netId;
+    public int port;
+
+    private TcAdsClient adsClient;
+    private int horizontalPositionHandle;
+    private int verticalPositionHandle;
+    private int startMovementHandle;
+    private int cantileverPositionHandle;
+    private int startCantileverMovementHandle;
+    private int currentColorHandle;
+    private int moveForwardHandle;
+    private int moveBackwardHandle;
+    private int testRespondHandle;
+
+    private int previousHorizontalPosition;
+    private int previousVerticalPosition;
+    private bool previousStartMovement;
+    private int previousCantileverPosition;
+    private bool previousStartCantileverMovement;
+    private int previousCurrentColor;
+    private bool previousMoveForward;
+    private bool previousMoveBackward;
+    private bool previousTestRespond;
+
+    void Start()
+    {
+        try
+        {
+            adsClient = new TcAdsClient();
+            adsClient.Connect(netId, port); // Change to your PLC's address
+
+            // Attempt to create variable handles and log success or failure
+            horizontalPositionHandle = adsClient.CreateVariableHandle("MAIN.UnityData.HorizontalPosition");
+            verticalPositionHandle = adsClient.CreateVariableHandle("MAIN.UnityData.VerticalPosition");
+            startMovementHandle = adsClient.CreateVariableHandle("MAIN.UnityData.StartMovement");
+            cantileverPositionHandle = adsClient.CreateVariableHandle("MAIN.UnityData.CantileverPosition");
+            startCantileverMovementHandle = adsClient.CreateVariableHandle("MAIN.UnityData.StartCantileverMovement");
+            currentColorHandle = adsClient.CreateVariableHandle("MAIN.UnityData.CurrentColor");
+            moveForwardHandle = adsClient.CreateVariableHandle("MAIN.UnityData.MoveForward");
+            moveBackwardHandle = adsClient.CreateVariableHandle("MAIN.UnityData.MoveBackward");
+            testRespondHandle = adsClient.CreateVariableHandle("MAIN.UnityData.testRespond");
+
+            Debug.Log("PLC connection and variable handles created successfully.");
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError("Error during initialization: " + ex.Message);
+        }
+    }
+
+    int CreateVariableHandle(string variablePath)
+    {
+        try
+        {
+            int handle = adsClient.CreateVariableHandle(variablePath);
+            Debug.Log($"Successfully created handle for {variablePath}");
+            return handle;
+        }
+        catch (AdsErrorException adsEx)
+        {
+            Debug.LogError($"ADS Error creating handle for {variablePath}: {adsEx.ErrorCode}");
+            throw;
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"Error creating handle for {variablePath}: {ex.Message}");
+            throw;
+        }
+    }
+
+    void Update()
+    {
+        try
+        {
+            int horizontalPosition = (int)adsClient.ReadAny(horizontalPositionHandle, typeof(int));
+            int verticalPosition = (int)adsClient.ReadAny(verticalPositionHandle, typeof(int));
+            bool startMovement = (bool)adsClient.ReadAny(startMovementHandle, typeof(bool));
+            int cantileverPosition = (int)adsClient.ReadAny(cantileverPositionHandle, typeof(int));
+            bool startCantileverMovement = (bool)adsClient.ReadAny(startCantileverMovementHandle, typeof(bool));
+            int currentColor = (int)adsClient.ReadAny(currentColorHandle, typeof(int));
+            bool moveForward = (bool)adsClient.ReadAny(moveForwardHandle, typeof(bool));
+            bool moveBackward = (bool)adsClient.ReadAny(moveBackwardHandle, typeof(bool));
+            bool testRespond = (bool)adsClient.ReadAny(testRespondHandle, typeof(bool));
+
+            if (horizontalPosition != previousHorizontalPosition)
+            {
+                Debug.Log($"Horizontal Position changed to: {horizontalPosition}");
+                previousHorizontalPosition = horizontalPosition;
+            }
+            if (verticalPosition != previousVerticalPosition)
+            {
+                Debug.Log($"Vertical Position changed to: {verticalPosition}");
+                previousVerticalPosition = verticalPosition;
+            }
+            if (startMovement != previousStartMovement)
+            {
+                Debug.Log($"Start Movement changed to: {startMovement}");
+                previousStartMovement = startMovement;
+            }
+            if (cantileverPosition != previousCantileverPosition)
+            {
+                Debug.Log($"Cantilever Position changed to: {cantileverPosition}");
+                previousCantileverPosition = cantileverPosition;
+            }
+            if (startCantileverMovement != previousStartCantileverMovement)
+            {
+                Debug.Log($"Start Cantilever Movement changed to: {startCantileverMovement}");
+                previousStartCantileverMovement = startCantileverMovement;
+            }
+            if (currentColor != previousCurrentColor)
+            {
+                Debug.Log($"Current Color changed to: {currentColor}");
+                previousCurrentColor = currentColor;
+            }
+            if (moveForward != previousMoveForward)
+            {
+                Debug.Log($"Move Forward changed to: {moveForward}");
+                previousMoveForward = moveForward;
+            }
+            if (moveBackward != previousMoveBackward)
+            {
+                Debug.Log($"Move Backward changed to: {moveBackward}");
+                previousMoveBackward = moveBackward;
+            }
+            if (testRespond != previousTestRespond)
+            {
+                Debug.Log($"Test Respond changed to: {testRespond}");
+                previousTestRespond = testRespond;
+            }
+        }
+        catch (AdsErrorException adsEx)
+        {
+            Debug.LogError("ADS Error: " + adsEx.ErrorCode);
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError("PLC read error: " + ex.Message);
+        }
+    }
+
+    void OnDestroy()
+    {
+        try
+        {
+            adsClient.Dispose();
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError("Error disposing ADS client: " + ex.Message);
+        }
+    }
+}
