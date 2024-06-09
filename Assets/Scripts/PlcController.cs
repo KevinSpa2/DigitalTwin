@@ -7,6 +7,8 @@ public class PlcController : MonoBehaviour
     public string netId;
     public int port;
 
+    public WarehouseController warehouseController;
+
     private TcAdsClient adsClient;
     private int horizontalPositionHandle;
     private int verticalPositionHandle;
@@ -30,6 +32,7 @@ public class PlcController : MonoBehaviour
 
     void Start()
     {
+        warehouseController = FindObjectOfType<WarehouseController>();
         try
         {
             adsClient = new TcAdsClient();
@@ -92,6 +95,8 @@ public class PlcController : MonoBehaviour
             {
                 Debug.Log($"Horizontal Position changed to: {horizontalPosition}");
                 previousHorizontalPosition = horizontalPosition;
+
+                warehouseController.MoveTurmToTarget(horizontalPosition, null);
             }
             if (verticalPosition != previousVerticalPosition)
             {
