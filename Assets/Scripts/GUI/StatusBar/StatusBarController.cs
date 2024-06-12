@@ -37,7 +37,7 @@ public class StatusBarController : MonoBehaviour
         // yPosition to start placing the status buttons
         int yPosition = 940;
         // List containing the required labels for the status buttons
-        List<string> components = ConfigurationManager.components;
+        List<string> components = new List<string>(); // ConfigurationManager.components;
         for (int i = 0; i < controller.GetComponent<Transform>().childCount; i++)
         {
             // We get the names from the 3D model

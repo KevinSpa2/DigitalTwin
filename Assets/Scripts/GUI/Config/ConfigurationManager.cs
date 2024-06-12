@@ -19,7 +19,7 @@ public class ConfigurationManager : MonoBehaviour
     private GameObject subModuleFieldPrefab;
 
     private string inputText;
-    
+    private int yPosition;
     private List<GameObject> subModules;
 
     // THIS LIST IS SUPPOSED TO BE USED IN STATUSBARCONTROLLER
@@ -28,13 +28,10 @@ public class ConfigurationManager : MonoBehaviour
     // Generate all necessary elements
     public void SelectModel(int index)
     {
-        for(int i = 0; i < modelParent.transform.childCount; i++){
-            Destroy(modelParent.transform.GetChild(i).gameObject);
-            // DOESNT DESTROY CONTAINERS
-        }   
+        this.Reset();
 
-        GameObject selectedModel = Instantiate(models[index]);
-        selectedModel.transform.SetParent(modelParent);
+        GameObject selectedModel = Instantiate(models[index], new Vector3(0, 11.02f, 0), new Quaternion(0, 0, 0, 0), modelParent);
+        Debug.Log(selectedModel.transform.childCount);
 
         List<GameObject> children = new List<GameObject>();
         for(int i = 0; i < selectedModel.transform.childCount; i++){
@@ -43,10 +40,9 @@ public class ConfigurationManager : MonoBehaviour
             components.Add(child.name);
         }
 
-        int yPosition = 625;
-        for(int i = 0; i < selectedModel.transform.childCount; i++){
-            // CAN ADD THESE INFINITELY BY PRESSING THE BUTTON AGAIN, NEED TO BE DESTROYED FIRST ON CLICK
-            GameObject subModule = Instantiate(subModuleFieldPrefab, new Vector3(1237, yPosition, 0), new Quaternion(0, 0, 0, 0), subModuleParent);
+        yPosition = 550;
+        for(int i = 0; i < components.Count; i++){
+            GameObject subModule = Instantiate(subModuleFieldPrefab, new Vector3(1200, yPosition, 0), new Quaternion(0, 0, 0, 0), subModuleParent);
             subModule.GetComponent<TMP_InputField>().text = components[i];
             subModules.Add(subModule);
             yPosition -= 85;
@@ -58,7 +54,24 @@ public class ConfigurationManager : MonoBehaviour
         // ON END EDIT & ON DESELECT
         for(int i = 0; i < modelParent.transform.childCount; i++){
             components[i] = subModules[i].GetComponent<TMP_InputField>().text;
+            Debug.Log(components[i]);
+        }
+    }
+
+    private void Reset(){
+        yPosition = 550;
+
+        for(int i = 0; i < modelParent.transform.childCount; i++){
+            Destroy(modelParent.transform.GetChild(i).gameObject);
+            // DOESNT DESTROY CONTAINERS
+        }
+
+        for(int i = 0; i < subModuleParent.transform.childCount; i++){
+            Destroy(subModuleParent.transform.GetChild(i).gameObject);
         }
     }
 
 }
+
+// Make a seperate script for the submodules and add these to the prefab. The SaveSubModuleNames need to be moved to that script and be called OnEndEdit and OnDeselect.
+// First time after recompiling, script works. After that it don't.
