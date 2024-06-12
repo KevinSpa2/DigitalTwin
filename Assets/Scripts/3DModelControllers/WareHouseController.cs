@@ -221,22 +221,16 @@ public class WarehouseController : MonoBehaviour
 
     public void MoveGreiferToTarget(bool startPickUp, int column, int level)
     {
-        float xPosition = maxGreiferXPosition; 
-        
-        // Debug.Log("Holding item: " + holdingItem);
-
         // If moveInstruction is a numeric value, map it to the range defined by minXPosition and maxXPosition
         if (!isXMoving && startPickUp && correctAuslegerLocation && correctTurmLocation)
         {
-            Debug.Log("SEARCHVALUE: " + shelfManager.SearchValue(column, level));
-            Debug.Log("HOLDING ITEM: " + holdingItem);
             if (shelfManager.SearchValue(column, level) && holdingItem)
             {
                 Debug.Log("Shelf already occupied!");
             }
             else
             {
-                StartCoroutine(movingObjects.MoveGreifer(greifer, xPosition));
+                StartCoroutine(movingObjects.MoveGreifer(greifer, maxGreiferXPosition));
             }
         }
     }
