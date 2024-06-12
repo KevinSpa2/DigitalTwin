@@ -18,17 +18,12 @@ public class PlcController : MonoBehaviour
     private int currentColorHandle;
     private int moveForwardHandle;
     private int moveBackwardHandle;
-    private int testRespondHandle;
 
     private int previousHorizontalPosition;
     private int previousVerticalPosition;
-    private bool previousStartMovement;
-    private int previousCantileverPosition;
     private bool previousStartCantileverMovement;
-    private int previousCurrentColor;
-    private bool previousMoveForward;
-    private bool previousMoveBackward;
-    private bool previousTestRespond;
+    private bool previousStartMovement;
+
 
     void Start()
     {
@@ -47,8 +42,6 @@ public class PlcController : MonoBehaviour
             currentColorHandle = adsClient.CreateVariableHandle("MAIN.UnityData.CurrentColor");
             moveForwardHandle = adsClient.CreateVariableHandle("MAIN.UnityData.MoveForward");
             moveBackwardHandle = adsClient.CreateVariableHandle("MAIN.UnityData.MoveBackward");
-            testRespondHandle = adsClient.CreateVariableHandle("MAIN.UnityData.testRespond");
-
             Debug.Log("PLC connection and variable handles created successfully.");
         }
         catch (Exception ex)
@@ -89,55 +82,42 @@ public class PlcController : MonoBehaviour
             int currentColor = (int)adsClient.ReadAny(currentColorHandle, typeof(int));
             bool moveForward = (bool)adsClient.ReadAny(moveForwardHandle, typeof(bool));
             bool moveBackward = (bool)adsClient.ReadAny(moveBackwardHandle, typeof(bool));
-            bool testRespond = (bool)adsClient.ReadAny(testRespondHandle, typeof(bool));
+            // bool testRespond = (bool)adsClient.ReadAny(testRespondHandle, typeof(bool));
+            
+            if (startMovement != previousStartMovement) {
+                warehouseController.MoveTurmToTarget(horizontalPosition, () => {
+                    warehouseController.MoveAuslegerToTarget(verticalPosition, () => {
+                        warehouseController.MoveGreiferToTarget(startCantileverMovement, horizontalPosition, verticalPosition);
+                    });
+                });
+            } else {
+                if (horizontalPosition != previousHorizontalPosition || verticalPosition != previousVerticalPosition || startCantileverMovement != previousStartCantileverMovement) {
+                    warehouseController.MoveTurmToTarget(horizontalPosition, () => {
+                        warehouseController.MoveAuslegerToTarget(verticalPosition, () => {
+                            warehouseController.MoveGreiferToTarget(startCantileverMovement, horizontalPosition, verticalPosition);
+                        });
+                    });
+                }
+            }
+
 
             if (horizontalPosition != previousHorizontalPosition)
-            {
-                Debug.Log($"Horizontal Position changed to: {horizontalPosition}");
+            {                
                 previousHorizontalPosition = horizontalPosition;
-
-                warehouseController.MoveTurmToTarget(horizontalPosition, null);
             }
             if (verticalPosition != previousVerticalPosition)
             {
-                Debug.Log($"Vertical Position changed to: {verticalPosition}");
                 previousVerticalPosition = verticalPosition;
-            }
-            if (startMovement != previousStartMovement)
-            {
-                Debug.Log($"Start Movement changed to: {startMovement}");
-                previousStartMovement = startMovement;
-            }
-            if (cantileverPosition != previousCantileverPosition)
-            {
-                Debug.Log($"Cantilever Position changed to: {cantileverPosition}");
-                previousCantileverPosition = cantileverPosition;
             }
             if (startCantileverMovement != previousStartCantileverMovement)
             {
-                Debug.Log($"Start Cantilever Movement changed to: {startCantileverMovement}");
                 previousStartCantileverMovement = startCantileverMovement;
             }
-            if (currentColor != previousCurrentColor)
+            if (startMovement != previousStartMovement)
             {
-                Debug.Log($"Current Color changed to: {currentColor}");
-                previousCurrentColor = currentColor;
+                previousStartMovement = startMovement;
             }
-            if (moveForward != previousMoveForward)
-            {
-                Debug.Log($"Move Forward changed to: {moveForward}");
-                previousMoveForward = moveForward;
-            }
-            if (moveBackward != previousMoveBackward)
-            {
-                Debug.Log($"Move Backward changed to: {moveBackward}");
-                previousMoveBackward = moveBackward;
-            }
-            if (testRespond != previousTestRespond)
-            {
-                Debug.Log($"Test Respond changed to: {testRespond}");
-                previousTestRespond = testRespond;
-            }
+
         }
         catch (AdsErrorException adsEx)
         {
