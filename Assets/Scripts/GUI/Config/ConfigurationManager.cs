@@ -20,7 +20,7 @@ public class ConfigurationManager : MonoBehaviour
 
     private string inputText;
     private int yPosition;
-    private List<GameObject> subModules;
+    private List<GameObject> subModules, children;
 
     // THIS LIST IS SUPPOSED TO BE USED IN STATUSBARCONTROLLER
     public static List<string> components = new List<string>();
@@ -30,10 +30,10 @@ public class ConfigurationManager : MonoBehaviour
     {
         this.Reset();
 
-        GameObject selectedModel = Instantiate(models[index], new Vector3(0, 11.02f, 0), new Quaternion(0, 0, 0, 0), modelParent);
+        GameObject selectedModel = Instantiate(models[index], new Vector3(0, 11.02f, 0), Quaternion.identity, modelParent);
         Debug.Log(selectedModel.transform.childCount);
 
-        List<GameObject> children = new List<GameObject>();
+        this.children = new List<GameObject>();
         for(int i = 0; i < selectedModel.transform.childCount; i++){
             GameObject child = selectedModel.transform.GetChild(i).gameObject;
             children.Add(child);
@@ -41,8 +41,10 @@ public class ConfigurationManager : MonoBehaviour
         }
 
         yPosition = 550;
+        Debug.Log(components.Count);
+        this.subModules = new List<GameObject>();
         for(int i = 0; i < components.Count; i++){
-            GameObject subModule = Instantiate(subModuleFieldPrefab, new Vector3(1200, yPosition, 0), new Quaternion(0, 0, 0, 0), subModuleParent);
+            GameObject subModule = Instantiate(subModuleFieldPrefab, new Vector3(1200, yPosition, 0), Quaternion.identity, subModuleParent);
             subModule.GetComponent<TMP_InputField>().text = components[i];
             subModules.Add(subModule);
             yPosition -= 85;
@@ -69,6 +71,8 @@ public class ConfigurationManager : MonoBehaviour
         for(int i = 0; i < subModuleParent.transform.childCount; i++){
             Destroy(subModuleParent.transform.GetChild(i).gameObject);
         }
+
+        components.Clear();
     }
 
 }
