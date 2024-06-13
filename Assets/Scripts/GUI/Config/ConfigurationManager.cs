@@ -21,6 +21,7 @@ public class ConfigurationManager : MonoBehaviour
     private string inputText;
     private int yPosition;
     private List<GameObject> subModules, children;
+    private GameObject selectedModel;
 
     // THIS LIST IS SUPPOSED TO BE USED IN STATUSBARCONTROLLER
     public static List<string> components = new List<string>();
@@ -30,8 +31,7 @@ public class ConfigurationManager : MonoBehaviour
     {
         this.Reset();
 
-        GameObject selectedModel = Instantiate(models[index], new Vector3(0, 11.02f, 0), Quaternion.identity, modelParent);
-        Debug.Log(selectedModel.transform.childCount);
+        selectedModel = Instantiate(models[index], new Vector3(0, 11.02f, 0), Quaternion.identity, modelParent);
 
         this.children = new List<GameObject>();
         for(int i = 0; i < selectedModel.transform.childCount; i++){
@@ -41,7 +41,6 @@ public class ConfigurationManager : MonoBehaviour
         }
 
         yPosition = 550;
-        Debug.Log(components.Count);
         this.subModules = new List<GameObject>();
         for(int i = 0; i < components.Count; i++){
             GameObject subModule = Instantiate(subModuleFieldPrefab, new Vector3(1200, yPosition, 0), Quaternion.identity, subModuleParent);
@@ -54,10 +53,10 @@ public class ConfigurationManager : MonoBehaviour
     // Save input in inputfields
     public void SaveSubModuleNames(){
         // ON END EDIT & ON DESELECT
-        for(int i = 0; i < modelParent.transform.childCount; i++){
+        for(int i = 0; i < selectedModel.transform.childCount; i++){
             components[i] = subModules[i].GetComponent<TMP_InputField>().text;
-            Debug.Log(components[i]);
         }
+        StatusBarController.Instance.SetStatusBarNames();
     }
 
     private void Reset(){

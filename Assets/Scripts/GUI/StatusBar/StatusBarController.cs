@@ -12,6 +12,9 @@ public class StatusBarController : MonoBehaviour
     const string STATUS_BAR_BUSY_TEXT = "busy";
     const string STATUS_BAR_OK_TEXT = "ok";
 
+    // Singleton
+    public static StatusBarController Instance;
+
     // Warehousecontroller
     [SerializeField]
     private GameObject controller;
@@ -31,19 +34,29 @@ public class StatusBarController : MonoBehaviour
     // List which gets filled with the status buttons
     private List<StatusButton> statusButtons = new List<StatusButton>();
 
+    private List<string> components;
+
     // Upon starting the program
     void Awake()
     {
+        // Assign singleton
+        if (Instance == null){
+            Instance = this;
+        }
+
         // yPosition to start placing the status buttons
         int yPosition = 940;
         // List containing the required labels for the status buttons
-        List<string> components = new List<string>(); // ConfigurationManager.components;
-        for (int i = 0; i < controller.GetComponent<Transform>().childCount; i++)
-        {
-            // We get the names from the 3D model
-            GameObject child = controller.GetComponent<Transform>().GetChild(i).gameObject;
-            components.Add(child.name);
+        this.SetStatusBarNames();
+        if(components.Count == 0){
+            for (int i = 0; i < controller.GetComponent<Transform>().childCount; i++)
+            {
+                // We get the names from the 3D model
+                GameObject child = controller.GetComponent<Transform>().GetChild(i).gameObject;
+                components.Add(child.name);
+            }
         }
+        
         
         // For loop creates the correct number of buttons, background box size needs to be reliant on the number of components in the status bar
         for (int i = 0; i < components.Count; i++)
@@ -102,5 +115,12 @@ public class StatusBarController : MonoBehaviour
             statusButtons[3 ].SetStatusText(STATUS_BAR_OK_TEXT);
         }
 
+    }
+
+    public void SetStatusBarNames(){
+        components = ConfigurationManager.components;
+        for (int i = 0; i < components.Count; i++){
+            statusButtons[i].SetComponentName(components[i]);
+        }
     }
 }
