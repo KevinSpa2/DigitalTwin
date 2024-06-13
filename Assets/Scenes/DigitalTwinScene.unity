@@ -4794,9 +4794,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c290a60730b5974cac9cb84181c0f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  warehouseController: {fileID: 1404323227}
-  mqttClient: {fileID: 0}
-  toggleObject: {fileID: 1439968818}
 --- !u!4 &550467152
 Transform:
   m_ObjectHideFlags: 0
