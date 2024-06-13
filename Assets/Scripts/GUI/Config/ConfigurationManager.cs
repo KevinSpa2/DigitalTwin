@@ -75,6 +75,3 @@ public class ConfigurationManager : MonoBehaviour
     }
 
 }
-
-// Make a seperate script for the submodules and add these to the prefab. The SaveSubModuleNames need to be moved to that script and be called OnEndEdit and OnDeselect.
-// First time after recompiling, script works. After that it don't.

@@ -32,7 +32,7 @@ public class StatusBarController : MonoBehaviour
     private Transform statusBar, statusBackground;
 
     // List which gets filled with the status buttons
-    private List<StatusButton> statusButtons = new List<StatusButton>();
+    private List<StatusButton> statusButtons;
 
     private List<string> components;
 
@@ -46,8 +46,9 @@ public class StatusBarController : MonoBehaviour
 
         // yPosition to start placing the status buttons
         int yPosition = 940;
-        // List containing the required labels for the status buttons
-        this.SetStatusBarNames();
+        this.statusButtons = new List<StatusButton>();
+        this.components = new List<string>();
+
         if(components.Count == 0){
             for (int i = 0; i < controller.GetComponent<Transform>().childCount; i++)
             {
@@ -57,12 +58,11 @@ public class StatusBarController : MonoBehaviour
             }
         }
         
-        
         // For loop creates the correct number of buttons, background box size needs to be reliant on the number of components in the status bar
         for (int i = 0; i < components.Count; i++)
         {
             // Create the object
-            GameObject status = Instantiate(statusButtonPrefab, new Vector3(STATUS_BAR_ELEMENT_SIZE, yPosition, 0), new Quaternion(0, 0, 0, 0), statusBar);
+            GameObject status = Instantiate(statusButtonPrefab, new Vector3(STATUS_BAR_ELEMENT_SIZE, yPosition, 0), Quaternion.identity, statusBar);
             // Add object to the statusButtons list
             this.statusButtons.Add(status.GetComponent<StatusButton>());
             // Set name
