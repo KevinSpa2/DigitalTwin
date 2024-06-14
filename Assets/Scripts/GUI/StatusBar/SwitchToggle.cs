@@ -10,6 +10,9 @@ public class SwitchToggle : MonoBehaviour
     [SerializeField] 
     private Color backgroundActiveColor, handleActiveColor;
 
+    [SerializeField]
+    private GameObject controlsButton;
+
     private Image backgroundImage, handleImage;
     private Color backgroundDefaultColor, handleDefaultColor;
     private Toggle toggle;
@@ -36,7 +39,14 @@ public class SwitchToggle : MonoBehaviour
         toggle.onValueChanged.AddListener(OnSwitch);
 
         if (toggle.isOn)
+        {
             OnSwitch(true);
+        }
+    }
+
+    void Update()
+    {
+        this.DisableControls();
     }
 
     void OnSwitch(bool on)
@@ -100,5 +110,17 @@ public class SwitchToggle : MonoBehaviour
     void OnDestroy()
     {
         toggle.onValueChanged.RemoveListener(OnSwitch);
+    }
+
+    private void DisableControls()
+    {
+        if (toggle.isOn)
+        {
+            controlsButton.GetComponent<Button>().interactable = true;
+        }
+        else
+        {
+            controlsButton.GetComponent<Button>().interactable = false;
+        }
     }
 }
