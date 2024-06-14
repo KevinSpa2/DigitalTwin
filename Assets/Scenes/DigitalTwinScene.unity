@@ -11700,6 +11700,7 @@ MonoBehaviour:
   backgroundActiveColor: {r: 0.76862746, g: 1, b: 0.76862746, a: 1}
   handleActiveColor: {r: 0.21960784, g: 1, b: 0.21960784, a: 1}
   controlsButton: {fileID: 2131425295}
+  plcController: {fileID: 1546380523}
 --- !u!1 &1476992352
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,7 +11,7 @@ public class SwitchToggle : MonoBehaviour
     private Color backgroundActiveColor, handleActiveColor;
 
     [SerializeField]
-    private GameObject controlsButton;
+    private GameObject controlsButton, plcController;
 
     private Image backgroundImage, handleImage;
     private Color backgroundDefaultColor, handleDefaultColor;
@@ -117,10 +117,12 @@ public class SwitchToggle : MonoBehaviour
         if (toggle.isOn)
         {
             controlsButton.GetComponent<Button>().interactable = true;
+            plcController.SetActive(false);
         }
         else
         {
             controlsButton.GetComponent<Button>().interactable = false;
+            plcController.SetActive(true);
         }
     }
 }
