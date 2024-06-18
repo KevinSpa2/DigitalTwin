@@ -11057,8 +11057,8 @@ MonoBehaviour:
   isXMoving: 0
   correctTurmLocation: 0
   correctAuslegerLocation: 0
-  movingObjects: {fileID: 0}
-  shelfManager: {fileID: 0}
+  movingObjects: {fileID: 1404323229}
+  shelfManager: {fileID: 1380374188}
 --- !u!114 &1404323229
 MonoBehaviour:
   m_ObjectHideFlags: 0

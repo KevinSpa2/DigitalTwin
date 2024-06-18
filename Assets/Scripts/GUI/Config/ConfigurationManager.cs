@@ -20,7 +20,7 @@ public class ConfigurationManager : MonoBehaviour
 
     private string inputText;
     private int yPosition;
-    private List<GameObject> subModules, children;
+    private List<GameObject> subModules, children, cameraFields;
     private GameObject selectedModel;
 
     // THIS LIST IS SUPPOSED TO BE USED IN STATUSBARCONTROLLER
@@ -42,13 +42,16 @@ public class ConfigurationManager : MonoBehaviour
             components.Add(child.name);
         }
 
-        // Generate the inputfields for the submodules
+        // Generate the inputfields for the submodules and camera's
         yPosition = 550;
         this.subModules = new List<GameObject>();
+        this.cameraFields = new List<GameObject>();
         for(int i = 0; i < components.Count; i++){
             GameObject subModule = Instantiate(subModuleFieldPrefab, new Vector3(1200, yPosition, 0), Quaternion.identity, subModuleParent);
+            GameObject cameraField = Instantiate(cameraFieldPrefab, new Vector3(1000, yPosition - 10, 0), Quaternion.identity, cameraFieldParent);
             subModule.GetComponent<TMP_InputField>().text = components[i];
             subModules.Add(subModule);
+            cameraFields.Add(cameraField);
             yPosition -= 85;
         }
     }
@@ -61,17 +64,24 @@ public class ConfigurationManager : MonoBehaviour
         StatusBarController.Instance.SetStatusBarNames();
     }
 
-    // Reset the 3D model in the scene
+    // Reset the scene
     private void Reset(){
         yPosition = 550;
 
+        // Reset the 3D model
         for(int i = 0; i < modelParent.transform.childCount; i++){
             Destroy(modelParent.transform.GetChild(i).gameObject);
             // DOESNT DESTROY CONTAINERS
         }
 
+        // Reset the input fields for submodules
         for(int i = 0; i < subModuleParent.transform.childCount; i++){
             Destroy(subModuleParent.transform.GetChild(i).gameObject);
+        }
+
+        // Reset the input fields for camera's
+        for(int i = 0; i < cameraFieldParent.transform.childCount; i++){
+            Destroy(cameraFieldParent.transform.GetChild(i).gameObject);
         }
 
         components.Clear();
