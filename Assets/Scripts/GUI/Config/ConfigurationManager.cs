@@ -10,13 +10,13 @@ using UnityEditor;
 public class ConfigurationManager : MonoBehaviour
 {
     [SerializeField]
-    private Transform modelParent, modelOptionsParent, subModuleParent;
+    private Transform modelParent, modelOptionsParent, subModuleParent, cameraFieldParent;
 
     [SerializeField]
     private List<GameObject> models;
 
     [SerializeField]
-    private GameObject subModuleFieldPrefab;
+    private GameObject subModuleFieldPrefab, cameraFieldPrefab;
 
     private string inputText;
     private int yPosition;
@@ -31,8 +31,10 @@ public class ConfigurationManager : MonoBehaviour
     {
         this.Reset();
 
+        // Load the 3D model into the scene
         selectedModel = Instantiate(models[index], new Vector3(0, 11.02f, 0), Quaternion.identity, modelParent);
 
+        // Find all children of the 3D model
         this.children = new List<GameObject>();
         for(int i = 0; i < selectedModel.transform.childCount; i++){
             GameObject child = selectedModel.transform.GetChild(i).gameObject;
@@ -40,6 +42,7 @@ public class ConfigurationManager : MonoBehaviour
             components.Add(child.name);
         }
 
+        // Generate the inputfields for the submodules
         yPosition = 550;
         this.subModules = new List<GameObject>();
         for(int i = 0; i < components.Count; i++){
@@ -52,13 +55,13 @@ public class ConfigurationManager : MonoBehaviour
 
     // Save input in inputfields
     public void SaveSubModuleNames(){
-        // ON END EDIT & ON DESELECT
         for(int i = 0; i < selectedModel.transform.childCount; i++){
             components[i] = subModules[i].GetComponent<TMP_InputField>().text;
         }
         StatusBarController.Instance.SetStatusBarNames();
     }
 
+    // Reset the 3D model in the scene
     private void Reset(){
         yPosition = 550;
 
