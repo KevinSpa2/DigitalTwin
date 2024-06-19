@@ -33,6 +33,7 @@ public class ConfigurationManager : MonoBehaviour
 
         // Load the 3D model into the scene
         selectedModel = Instantiate(models[index], new Vector3(0, 11.02f, 0), Quaternion.identity, modelParent);
+        models[index] = selectedModel;
 
         // Find all children of the 3D model
         this.children = new List<GameObject>();
