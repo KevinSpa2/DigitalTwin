@@ -149,9 +149,7 @@ public class WarehouseController : MonoBehaviour
                     correctTurmLocation = true;
                     break;
                 default:
-                    zPosition = 0f;
-                    correctTurmLocation = false;
-                    break;
+                    return;
             }
         }
 
@@ -173,7 +171,7 @@ public class WarehouseController : MonoBehaviour
         float yPosition;
 
         // Check if moveInstruction is  numeric 
-        if (moveYInstruction > 4 && moveYInstruction < 1000)
+        if (moveYInstruction > 3 && moveYInstruction < 1000)
         {
             // If moveInstruction is a numeric value, clamp it in the range of 0 and 1000
             yPosition = moveYInstruction;
@@ -197,15 +195,13 @@ public class WarehouseController : MonoBehaviour
                     currentYPosition = 3;
                     correctAuslegerLocation = true;
                     break;
-                case 4:
+                case 0:
                     yPosition = 240;
                     currentYPosition = 4;
                     correctAuslegerLocation = true;
                     break;
                 default:
-                    yPosition = 0f;
-                    correctAuslegerLocation = false;
-                    break;
+                    return;
             }
         }
 
