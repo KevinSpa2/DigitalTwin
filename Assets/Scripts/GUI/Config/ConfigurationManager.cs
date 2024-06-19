@@ -67,7 +67,8 @@ public class ConfigurationManager : MonoBehaviour
             // The input fields of the camera of each submodule, each array has length 3 and contains x, y and z.
             TMP_InputField[] fields = cameraFields[i].GetComponentsInChildren<TMP_InputField>(true);
             Vector3 cameraPosition = new Vector3(float.Parse(fields[0].text), float.Parse(fields[1].text), float.Parse(fields[2].text));
-            GameObject camera = Instantiate(cameraPrefab, cameraPosition, new Quaternion(180, 0, 180, 0), cameraParent).SetActive(false);
+            GameObject camera = Instantiate(cameraPrefab, cameraPosition, new Quaternion(180, 0, 180, 0), cameraParent);
+            camera.SetActive(false);
         }
     }
 
