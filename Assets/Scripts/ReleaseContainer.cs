@@ -29,7 +29,6 @@ public class ReleaseContainer : MonoBehaviour
             {
                 warehouseController.shelfManager.RemoveValue(shelfName);
             }
-            // Debug.Log(warehouseController.holdingItem);
         } 
         else if (collision.gameObject.CompareTag("Belt"))
         {
@@ -48,20 +47,17 @@ public class ReleaseContainer : MonoBehaviour
             {
                 if (!onShelf)
                 {
-                    // Debug.Log("Container is in contact with shelf: " + shelfName);
                     // If the container is on the platform, release it
                     transform.parent = null;
                     Debug.Log("Released container");
                     onShelf = true;
                     warehouseController.setHoldingItem(false);
                     warehouseController.shelfManager.AddValue(shelfName);
-                    warehouseController.shelfManager.DisplayValues();
                 }
             }
             else
             {
                 warehouseController.shelfManager.AddValue(shelfName);
-                warehouseController.shelfManager.DisplayValues();
             }
         }
     }
