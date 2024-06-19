@@ -8,6 +8,8 @@ public class PlcController : MonoBehaviour
     public int port;
 
     public WarehouseController warehouseController;
+    public ConveyorBeltMovement conveyorBelt;
+    ConveyorBeltMovement[] conveyorBelts;
 
     private TcAdsClient adsClient;
     private int horizontalPositionHandle;
@@ -23,13 +25,16 @@ public class PlcController : MonoBehaviour
     private int previousVerticalPosition;
     private bool previousStartCantileverMovement;
     private bool previousStartMovement;
-
+    private bool previousMoveForward;
+    private bool previousMoveBackward;
 
     void Start()
     {
         warehouseController = FindObjectOfType<WarehouseController>();
+        conveyorBelts = FindObjectsOfType<ConveyorBeltMovement>();
         try
         {
+            ConveyorBeltMovement[] conveyorBelts = FindObjectsOfType<ConveyorBeltMovement>();
             adsClient = new TcAdsClient();
             adsClient.Connect(netId, port); // Change to your PLC's address
 
@@ -82,22 +87,51 @@ public class PlcController : MonoBehaviour
             int currentColor = (int)adsClient.ReadAny(currentColorHandle, typeof(int));
             bool moveForward = (bool)adsClient.ReadAny(moveForwardHandle, typeof(bool));
             bool moveBackward = (bool)adsClient.ReadAny(moveBackwardHandle, typeof(bool));
-            // bool testRespond = (bool)adsClient.ReadAny(testRespondHandle, typeof(bool));
             
-            if (startMovement != previousStartMovement) {
-                warehouseController.MoveTurmToTarget(horizontalPosition, () => {
-                    warehouseController.MoveAuslegerToTarget(verticalPosition, () => {
+            ConveyorBeltMovement foundBelt = null;
+
+            foreach (ConveyorBeltMovement belt in conveyorBelts)
+            {
+                if (belt.onBelt)
+                {
+                    foundBelt = belt;
+                    break; 
+                }
+            }
+
+            if (foundBelt != conveyorBelt)
+            {
+                conveyorBelt = foundBelt;
+            }
+
+            if (startMovement != previousStartMovement)
+            {
+                warehouseController.MoveTurmToTarget(horizontalPosition, () =>
+                {
+                    warehouseController.MoveAuslegerToTarget(verticalPosition, () =>
+                    {
                         warehouseController.MoveGreiferToTarget(startCantileverMovement, horizontalPosition, verticalPosition);
                     });
                 });
-            } else {
-                if (horizontalPosition != previousHorizontalPosition || verticalPosition != previousVerticalPosition || startCantileverMovement != previousStartCantileverMovement) {
-                    warehouseController.MoveTurmToTarget(horizontalPosition, () => {
-                        warehouseController.MoveAuslegerToTarget(verticalPosition, () => {
+            }
+            else
+            {
+                if (horizontalPosition != previousHorizontalPosition || verticalPosition != previousVerticalPosition || startCantileverMovement != previousStartCantileverMovement)
+                {
+                    warehouseController.MoveTurmToTarget(horizontalPosition, () =>
+                    {
+                        warehouseController.MoveAuslegerToTarget(verticalPosition, () =>
+                        {
                             warehouseController.MoveGreiferToTarget(startCantileverMovement, horizontalPosition, verticalPosition);
                         });
                     });
                 }
+            }
+
+            if(moveForward && moveForward != previousMoveForward) {
+                conveyorBelt.MoveForward();
+            } else if (moveBackward && moveBackward != previousMoveBackward) {
+                conveyorBelt.MoveBackward();
             }
 
 
@@ -116,6 +150,14 @@ public class PlcController : MonoBehaviour
             if (startMovement != previousStartMovement)
             {
                 previousStartMovement = startMovement;
+            }
+            if (moveForward != previousMoveForward)
+            {
+                previousMoveForward = moveForward;
+            }
+            if (moveBackward != previousMoveBackward)
+            {
+                previousMoveBackward = moveBackward;
             }
 
         }
