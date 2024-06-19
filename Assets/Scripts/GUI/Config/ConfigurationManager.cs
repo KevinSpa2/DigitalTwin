@@ -9,6 +9,8 @@ using UnityEditor;
 
 public class ConfigurationManager : MonoBehaviour
 {
+    const int STANDARD_Y_POSITION = 450;
+
     [SerializeField]
     private Transform modelParent, modelOptionsParent, subModuleParent, cameraFieldParent, cameraParent;
 
@@ -58,7 +60,7 @@ public class ConfigurationManager : MonoBehaviour
         }
 
         // Generate the inputfields for the submodules and camera's
-        yPosition = 500;
+        yPosition = STANDARD_Y_POSITION;
         this.subModules = new List<GameObject>();
         this.cameraFields = new List<GameObject>();
         for(int i = 0; i < components.Count; i++){
@@ -89,7 +91,7 @@ public class ConfigurationManager : MonoBehaviour
 
     // Reset the scene
     private void Reset(){
-        yPosition = 550;
+        yPosition = STANDARD_Y_POSITION;
 
         // Reset the 3D model
         for(int i = 0; i < modelParent.transform.childCount; i++){
