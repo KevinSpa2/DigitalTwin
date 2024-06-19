@@ -322,6 +322,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &25501981
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 25501982}
+  m_Layer: 0
+  m_Name: StatusBarCameras
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &25501982
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 25501981}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1121373427}
+  m_Father: {fileID: 1356880951}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &47105789
 GameObject:
   m_ObjectHideFlags: 0
@@ -8495,12 +8527,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1121373426}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: -2.26, y: 7.63, z: -20.39}
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
+  m_LocalPosition: {x: -2.26, y: 7.630001, z: -20.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1356880951}
+  m_Father: {fileID: 25501982}
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: 180}
 --- !u!81 &1121373429
 AudioListener:
@@ -10555,10 +10587,10 @@ Transform:
   m_Children:
   - {fileID: 515850171}
   - {fileID: 1125441531}
-  - {fileID: 1121373427}
   - {fileID: 1485490038}
   - {fileID: 334019005}
   - {fileID: 344682549}
+  - {fileID: 25501982}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1360258466
@@ -10760,10 +10792,12 @@ MonoBehaviour:
   modelOptionsParent: {fileID: 1970192695}
   subModuleParent: {fileID: 263768409}
   cameraFieldParent: {fileID: 972964570}
+  cameraParent: {fileID: 25501982}
   models:
   - {fileID: 1404323217}
   subModuleFieldPrefab: {fileID: 4041227234834239174, guid: 008c21113c9a390498543e054095be64, type: 3}
   cameraFieldPrefab: {fileID: 6894994921649018067, guid: 071c4869cb5d1b44bb41a3890526c1ad, type: 3}
+  cameraPrefab: {fileID: 1934904327158849879, guid: 39544c213b57460419be11f818bbaeef, type: 3}
 --- !u!4 &1373445399
 Transform:
   m_ObjectHideFlags: 0
@@ -13367,9 +13401,9 @@ RectTransform:
   - {fileID: 335288570}
   - {fileID: 1648606384}
   - {fileID: 280732513}
+  - {fileID: 972964570}
   - {fileID: 263768409}
   - {fileID: 1284472613}
-  - {fileID: 972964570}
   m_Father: {fileID: 601727329}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}

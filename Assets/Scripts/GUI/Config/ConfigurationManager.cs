@@ -10,13 +10,13 @@ using UnityEditor;
 public class ConfigurationManager : MonoBehaviour
 {
     [SerializeField]
-    private Transform modelParent, modelOptionsParent, subModuleParent, cameraFieldParent;
+    private Transform modelParent, modelOptionsParent, subModuleParent, cameraFieldParent, cameraParent;
 
     [SerializeField]
     private List<GameObject> models;
 
     [SerializeField]
-    private GameObject subModuleFieldPrefab, cameraFieldPrefab;
+    private GameObject subModuleFieldPrefab, cameraFieldPrefab, cameraPrefab;
 
     private string inputText;
     private int yPosition;
@@ -62,6 +62,13 @@ public class ConfigurationManager : MonoBehaviour
             components[i] = subModules[i].GetComponent<TMP_InputField>().text;
         }
         StatusBarController.Instance.SetStatusBarNames();
+
+        for(int i = 0; i < cameraFields.Count; i++){
+            // The input fields of the camera of each submodule, each array has length 3 and contains x, y and z.
+            TMP_InputField[] fields = cameraFields[i].GetComponentsInChildren<TMP_InputField>(true);
+            Vector3 cameraPosition = new Vector3(float.Parse(fields[0].text), float.Parse(fields[1].text), float.Parse(fields[2].text));
+            GameObject camera = Instantiate(cameraPrefab, cameraPosition, new Quaternion(180, 0, 180, 0), cameraParent).SetActive(false);
+        }
     }
 
     // Reset the scene
