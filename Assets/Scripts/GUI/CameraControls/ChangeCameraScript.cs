@@ -4,9 +4,19 @@ using UnityEngine;
 
 public class ChangeCameraScript : MonoBehaviour
 {
+
+    // Singleton
+    public static ChangeCameraScript Instance;
+
     public Camera[] cameras;
     public int currentCameraIndex;
     private Camera currentCamera;
+
+    private void Awake(){
+        if (Instance == null) { 
+            Instance = this;
+        }
+    }
 
     void Start()
     {
