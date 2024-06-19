@@ -18,6 +18,12 @@ public class ConfigurationManager : MonoBehaviour
     [SerializeField]
     private GameObject subModuleFieldPrefab, cameraFieldPrefab, cameraPrefab;
 
+    [SerializeField]
+    private TMP_InputField netIdField, portField;
+
+    [SerializeField]
+    private PlcController plcController;
+
     private string inputText;
     private int yPosition;
     private List<GameObject> subModules, children, cameraFields;
@@ -25,6 +31,14 @@ public class ConfigurationManager : MonoBehaviour
 
     // THIS LIST IS SUPPOSED TO BE USED IN STATUSBARCONTROLLER
     public static List<string> components = new List<string>();
+
+    public string savedNetId;
+    public int savedPort;
+
+    public void Awake(){
+        this.netIdField.text = "127.0.0.1.1.1";
+        this.portField.text = "851";
+    }
 
     // Generate all necessary elements
     public void SelectModel(int index)
@@ -44,7 +58,7 @@ public class ConfigurationManager : MonoBehaviour
         }
 
         // Generate the inputfields for the submodules and camera's
-        yPosition = 550;
+        yPosition = 500;
         this.subModules = new List<GameObject>();
         this.cameraFields = new List<GameObject>();
         for(int i = 0; i < components.Count; i++){
@@ -94,6 +108,16 @@ public class ConfigurationManager : MonoBehaviour
         }
 
         components.Clear();
+    }
+
+    public void SetNetId(){
+        Debug.Log(netIdField.text);
+        plcController.SetNetId(netIdField.text);
+    }
+
+    public void SetPort(){
+        Debug.Log(portField.text);
+        plcController.SetPort(int.Parse(portField.text));
     }
 
 }

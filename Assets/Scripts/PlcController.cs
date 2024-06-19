@@ -182,4 +182,12 @@ public class PlcController : MonoBehaviour
             Debug.LogError("Error disposing ADS client: " + ex.Message);
         }
     }
+
+    public void SetNetId(string netId){
+        this.netId = netId;
+    }
+
+    public void SetPort(int port){
+        this.port = port;
+    }
 }
