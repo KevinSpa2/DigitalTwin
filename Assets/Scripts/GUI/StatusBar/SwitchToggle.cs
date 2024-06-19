@@ -22,17 +22,21 @@ public class SwitchToggle : MonoBehaviour
     {
         toggle = GetComponent<Toggle>();
 
+        // Check if uiHandleRectTransform is assigned
         if (uiHandleRectTransform == null)
         {
             Debug.LogError("uiHandleRectTransform is niet toegekend");
             return;
         }
 
+        // Save the initial position of the handle
         handlePosition = uiHandleRectTransform.anchoredPosition;
 
+        // Get the Image components for background and handle
         backgroundImage = uiHandleRectTransform.parent.GetComponent<Image>();
         handleImage = uiHandleRectTransform.GetComponent<Image>();
 
+        // Save the default colors for background and handle
         backgroundDefaultColor = backgroundImage.color;
         handleDefaultColor = handleImage.color;
 
@@ -51,11 +55,13 @@ public class SwitchToggle : MonoBehaviour
 
     void OnSwitch(bool on)
     {
+        // Start animations for handle position, background color, and handle color
         StartCoroutine(AnimateHandlePosition(on));
         StartCoroutine(AnimateBackgroundColor(on));
         StartCoroutine(AnimateHandleColor(on));
     }
 
+    // Coroutine to animate handle position
     IEnumerator AnimateHandlePosition(bool on)
     {
         Vector2 start = uiHandleRectTransform.anchoredPosition;
@@ -73,6 +79,7 @@ public class SwitchToggle : MonoBehaviour
         uiHandleRectTransform.anchoredPosition = end;
     }
 
+    // Coroutine to animate background color
     IEnumerator AnimateBackgroundColor(bool on)
     {
         Color start = backgroundImage.color;
@@ -90,6 +97,7 @@ public class SwitchToggle : MonoBehaviour
         backgroundImage.color = end;
     }
 
+    // Coroutine to animate handle color
     IEnumerator AnimateHandleColor(bool on)
     {
         Color start = handleImage.color;
@@ -112,6 +120,7 @@ public class SwitchToggle : MonoBehaviour
         toggle.onValueChanged.RemoveListener(OnSwitch);
     }
 
+    // Method to enable/disable controls based on the toggle state
     private void DisableControls()
     {
         if (toggle.isOn)
