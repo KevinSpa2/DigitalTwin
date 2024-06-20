@@ -755,7 +755,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1404323227}
+      - m_Target: {fileID: 1266741244}
         m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
         m_MethodName: MoveTurmManually
         m_Mode: 3
@@ -767,7 +767,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1404323227}
+      - m_Target: {fileID: 1266741244}
         m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
         m_MethodName: MoveAuslegerManually
         m_Mode: 3
@@ -1102,7 +1102,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1404323227}
+      - m_Target: {fileID: 1266741244}
         m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
         m_MethodName: MoveGreiferManually
         m_Mode: 1
@@ -1762,7 +1762,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1404323227}
+      - m_Target: {fileID: 1266741244}
         m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
         m_MethodName: MoveTurmManually
         m_Mode: 3
@@ -1774,7 +1774,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1404323227}
+      - m_Target: {fileID: 1266741244}
         m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
         m_MethodName: MoveAuslegerManually
         m_Mode: 3
@@ -5123,50 +5123,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 546881305}
   m_CullTransparentMesh: 1
---- !u!1 &550467150
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 550467152}
-  - component: {fileID: 550467151}
-  m_Layer: 0
-  m_Name: SignalReceiver
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &550467151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 550467150}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c290a60730b5974cac9cb84181c0f20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &550467152
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 550467150}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 232.28378, y: 1062.855, z: -1.5851593}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &553340145 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8518960387825338824, guid: 81d5559c9effd8e42a53482e95ca1fec, type: 3}
@@ -5449,7 +5405,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1404323227}
+      - m_Target: {fileID: 1266741244}
         m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
         m_MethodName: MoveTurmManually
         m_Mode: 3
@@ -5461,7 +5417,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1404323227}
+      - m_Target: {fileID: 1266741244}
         m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
         m_MethodName: MoveAuslegerManually
         m_Mode: 3
@@ -5856,7 +5812,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c59f8ecfc32f3f4590b9eb24e2d79a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 1404323217}
+  controller: {fileID: 1266741242}
+  model: {fileID: 1404323217}
   statusButtonOrange: {fileID: 21300000, guid: 7ac0a1b73c3a2a24bb9a875c501d5966, type: 3}
   statusButtonGreen: {fileID: 21300000, guid: e544cefa7b28c60419cf74329d068312, type: 3}
   statusButtonRed: {fileID: 21300000, guid: b47b925b44ee57d48bdf2e7664c673a4, type: 3}
@@ -6382,7 +6339,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1404323227}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
         m_MethodName: MoveGreiferManually
         m_Mode: 1
@@ -6708,12 +6665,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 81d5559c9effd8e42a53482e95ca1fec, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1404323221}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 81d5559c9effd8e42a53482e95ca1fec, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1404323227}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 81d5559c9effd8e42a53482e95ca1fec, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1404323229}
     - targetCorrespondingSourceObject: {fileID: 5313919353373908788, guid: 81d5559c9effd8e42a53482e95ca1fec, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1241659865}
@@ -7054,7 +7005,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1404323227}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
         m_MethodName: MoveGreiferManually
         m_Mode: 1
@@ -7575,7 +7526,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1404323227}
+      - m_Target: {fileID: 1266741244}
         m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
         m_MethodName: MoveTurmManually
         m_Mode: 3
@@ -7587,7 +7538,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1404323227}
+      - m_Target: {fileID: 1266741244}
         m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
         m_MethodName: MoveAuslegerManually
         m_Mode: 3
@@ -9517,7 +9468,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1404323227}
+      - m_Target: {fileID: 1266741244}
         m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
         m_MethodName: MoveTurmManually
         m_Mode: 3
@@ -9529,7 +9480,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1404323227}
+      - m_Target: {fileID: 1266741244}
         m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
         m_MethodName: MoveAuslegerManually
         m_Mode: 3
@@ -10621,6 +10572,97 @@ Transform:
   - {fileID: 1435157258}
   m_Father: {fileID: 1364205708}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1266741242
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1266741245}
+  - component: {fileID: 1266741244}
+  - component: {fileID: 1266741243}
+  m_Layer: 0
+  m_Name: ControllerScript
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1266741243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266741242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96db791016867bb46a942adfd2d55c47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1266741244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266741242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bc896fb7b25f5c41bd66ab5b587d683, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turm: {fileID: 2084218851}
+  ausleger: {fileID: 1921452083}
+  greifer: {fileID: 1327735230}
+  holdingItem: 0
+  moveSpeed: 10
+  topLevel: 925
+  midLevel: 520
+  bottomLevel: 110
+  minZPosition: 0
+  maxZPosition: 2200
+  minYPosition: 0
+  maxYPosition: 1000
+  minTurmZPosition: 37.03607
+  maxTurmZPosition: 67.64607
+  minAuslegerZPosition: 34.17
+  maxAuslegerZPosition: 64.78
+  minGreiferZPosition: 29.43
+  maxGreiferZPosition: 60.04
+  minAuslegerYPosition: 6.101268
+  maxAuslegerYPosition: 20.64827
+  minGreiferYPosition: 6.857
+  maxGreiferYPosition: 21.404
+  minGreiferXPosition: -11.17033
+  maxGreiferXPosition: -7.4
+  currentZPosition: 0
+  currentYPosition: 0
+  spawnableObjects: []
+  isZMoving: 0
+  isYMoving: 0
+  isXMoving: 0
+  correctTurmLocation: 0
+  correctAuslegerLocation: 0
+  movingObjects: {fileID: 1266741243}
+  shelfManager: {fileID: 1380374188}
+--- !u!4 &1266741245
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266741242}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 959.5, y: 540.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1280139347
 GameObject:
   m_ObjectHideFlags: 0
@@ -10794,7 +10836,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1404323227}
+      - m_Target: {fileID: 1266741244}
         m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
         m_MethodName: MoveTurmManually
         m_Mode: 3
@@ -10806,7 +10848,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1404323227}
+      - m_Target: {fileID: 1266741244}
         m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
         m_MethodName: MoveAuslegerManually
         m_Mode: 3
@@ -12092,7 +12134,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1404323227}
+      - m_Target: {fileID: 1266741244}
         m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
         m_MethodName: MoveTurmManually
         m_Mode: 3
@@ -12104,7 +12146,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1404323227}
+      - m_Target: {fileID: 1266741244}
         m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
         m_MethodName: MoveAuslegerManually
         m_Mode: 3
@@ -12189,64 +12231,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1404323217}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1404323227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1404323217}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bc896fb7b25f5c41bd66ab5b587d683, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  turm: {fileID: 2084218851}
-  ausleger: {fileID: 1921452083}
-  greifer: {fileID: 1327735230}
-  holdingItem: 0
-  moveSpeed: 10
-  topLevel: 925
-  midLevel: 520
-  bottomLevel: 110
-  minZPosition: 0
-  maxZPosition: 2200
-  minYPosition: 0
-  maxYPosition: 1000
-  minTurmZPosition: 37.03607
-  maxTurmZPosition: 67.64607
-  minAuslegerZPosition: 34.17
-  maxAuslegerZPosition: 64.78
-  minGreiferZPosition: 29.43
-  maxGreiferZPosition: 60.04
-  minAuslegerYPosition: 6.101268
-  maxAuslegerYPosition: 20.64827
-  minGreiferYPosition: 6.857
-  maxGreiferYPosition: 21.404
-  minGreiferXPosition: -11.17033
-  maxGreiferXPosition: -7.4
-  currentZPosition: 0
-  currentYPosition: 0
-  spawnableObjects: []
-  isZMoving: 0
-  isYMoving: 0
-  isXMoving: 0
-  correctTurmLocation: 0
-  correctAuslegerLocation: 0
-  movingObjects: {fileID: 1404323229}
-  shelfManager: {fileID: 1380374188}
---- !u!114 &1404323229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1404323217}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96db791016867bb46a942adfd2d55c47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1404323230 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 81d5559c9effd8e42a53482e95ca1fec, type: 3}
@@ -14298,7 +14282,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1404323227}
+      - m_Target: {fileID: 1266741244}
         m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
         m_MethodName: MoveTurmManually
         m_Mode: 3
@@ -14310,7 +14294,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1404323227}
+      - m_Target: {fileID: 1266741244}
         m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
         m_MethodName: MoveAuslegerManually
         m_Mode: 3
@@ -16438,7 +16422,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1404323227}
+      - m_Target: {fileID: 1266741244}
         m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
         m_MethodName: MoveTurmManually
         m_Mode: 3
@@ -16450,7 +16434,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1404323227}
+      - m_Target: {fileID: 1266741244}
         m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
         m_MethodName: MoveAuslegerManually
         m_Mode: 3
@@ -17295,7 +17279,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1404323227}
+      - m_Target: {fileID: 1266741244}
         m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
         m_MethodName: MoveTurmManually
         m_Mode: 3
@@ -17307,7 +17291,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1404323227}
+      - m_Target: {fileID: 1266741244}
         m_TargetAssemblyTypeName: WarehouseController, Assembly-CSharp
         m_MethodName: MoveAuslegerManually
         m_Mode: 3
@@ -19563,8 +19547,8 @@ SceneRoots:
   - {fileID: 244916610}
   - {fileID: 616278277}
   - {fileID: 355583642}
-  - {fileID: 550467152}
   - {fileID: 1373445399}
+  - {fileID: 1266741245}
   - {fileID: 1326728408}
   - {fileID: 1131118494}
   - {fileID: 1546380525}

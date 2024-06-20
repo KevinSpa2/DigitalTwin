@@ -17,7 +17,7 @@ public class StatusBarController : MonoBehaviour
 
     // Warehousecontroller
     [SerializeField]
-    private GameObject controller;
+    private GameObject controller, model;
 
     // Different button states
     [SerializeField]
@@ -50,10 +50,10 @@ public class StatusBarController : MonoBehaviour
         this.components = new List<string>();
 
         if(components.Count == 0){
-            for (int i = 0; i < controller.GetComponent<Transform>().childCount; i++)
+            for (int i = 0; i < model.GetComponent<Transform>().childCount; i++)
             {
                 // We get the names from the 3D model
-                GameObject child = controller.GetComponent<Transform>().GetChild(i).gameObject;
+                GameObject child = model.GetComponent<Transform>().GetChild(i).gameObject;
                 components.Add(child.name);
             }
         }
