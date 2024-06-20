@@ -14,6 +14,10 @@ TagManager:
   - Can
   - g4a sun
   - g4a secondlight
+  - turm
+  - grundplatte
+  - greifer
+  - ausleger
   layers:
   - Default
   - TransparentFX

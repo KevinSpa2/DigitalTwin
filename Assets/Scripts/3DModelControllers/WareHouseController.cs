@@ -9,6 +9,7 @@ public class WarehouseController : MonoBehaviour
     public Transform turm;
     public Transform ausleger;
     public Transform greifer;
+    public Transform modelParent;
 
     // Holding item
     public bool holdingItem;
@@ -67,13 +68,24 @@ public class WarehouseController : MonoBehaviour
     public MovingObjects movingObjects;
     public ShelfManager shelfManager;
 
+    private GameObject model;
+
     
 
     private void Start()
     {
         movingObjects = FindObjectOfType<MovingObjects>();
         shelfManager = FindObjectOfType<ShelfManager>();
-    } 
+    }
+
+    private void FindModels(){
+        model = modelParent.GetChild(0).gameObject;
+        turm = GameObject.FindGameObjectsWithTag("turm")[0].transform;
+        ausleger = GameObject.FindGameObjectsWithTag("ausleger")[0].transform;
+        greifer = GameObject.FindGameObjectsWithTag("greifer")[0].transform;
+        this.isZMoving = false;
+        // this.isZMoving = true;
+    }
 
     public void setHoldingItem(bool setItem)
     {
@@ -83,16 +95,19 @@ public class WarehouseController : MonoBehaviour
     public void MoveTurmManually(int movement)
     {
         MoveTurmToTarget(movement, null);
+        this.FindModels();
     }
 
     public void MoveAuslegerManually(int movement)
     {
         MoveAuslegerToTarget(movement, null);
+        this.FindModels();
     }
 
     public void MoveGreiferManually()
     {
         MoveGreiferToTarget(shelfManager, currentZPosition, currentYPosition);
+        this.FindModels();
     }
 
     public void CreateContainer(string Color)

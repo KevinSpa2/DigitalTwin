@@ -17,7 +17,7 @@ public class StatusBarController : MonoBehaviour
 
     // Warehousecontroller
     [SerializeField]
-    private GameObject controller, model;
+    private GameObject controller;
 
     // Different button states
     [SerializeField]
@@ -29,12 +29,14 @@ public class StatusBarController : MonoBehaviour
 
     // Parent of the status buttons
     [SerializeField]
-    private Transform statusBar, statusBackground;
+    private Transform statusBar, statusBackground, modelParent;
 
     // List which gets filled with the status buttons
     private List<StatusButton> statusButtons;
 
     private List<string> components;
+
+    private GameObject model;
 
     // Upon starting the program
     void Awake()
@@ -43,6 +45,8 @@ public class StatusBarController : MonoBehaviour
         if (Instance == null){
             Instance = this;
         }
+
+        this.model = modelParent.GetChild(0).gameObject;
 
         // yPosition to start placing the status buttons
         int yPosition = 940;
