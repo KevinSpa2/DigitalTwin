@@ -8,8 +8,8 @@ public class PlcController : MonoBehaviour
     public int port;
 
     public WarehouseController warehouseController;
-    public ConveyorBeltMovement conveyorBelt;
-    ConveyorBeltMovement[] conveyorBelts;
+    public ConveyerBeltManager conveyorBeltManager;
+
 
     private TcAdsClient adsClient;
     private int horizontalPositionHandle;
@@ -31,12 +31,12 @@ public class PlcController : MonoBehaviour
     void Start()
     {
         warehouseController = FindObjectOfType<WarehouseController>();
-        conveyorBelts = FindObjectsOfType<ConveyorBeltMovement>();
+        conveyorBeltManager = FindObjectOfType<ConveyerBeltManager>();
         try
         {
-            ConveyorBeltMovement[] conveyorBelts = FindObjectsOfType<ConveyorBeltMovement>();
+            conveyorBeltManager.startup();
             adsClient = new TcAdsClient();
-            adsClient.Connect(netId, port); // Change to your PLC's address
+            adsClient.Connect(netId, port); 
 
             // Attempt to create variable handles and log success or failure
             horizontalPositionHandle = adsClient.CreateVariableHandle("MAIN.UnityData.HorizontalPosition");
@@ -88,21 +88,8 @@ public class PlcController : MonoBehaviour
             bool moveForward = (bool)adsClient.ReadAny(moveForwardHandle, typeof(bool));
             bool moveBackward = (bool)adsClient.ReadAny(moveBackwardHandle, typeof(bool));
             
-            ConveyorBeltMovement foundBelt = null;
 
-            foreach (ConveyorBeltMovement belt in conveyorBelts)
-            {
-                if (belt.onBelt)
-                {
-                    foundBelt = belt;
-                    break; 
-                }
-            }
-
-            if (foundBelt != conveyorBelt)
-            {
-                conveyorBelt = foundBelt;
-            }
+            conveyorBeltManager.findBelt();
 
             if (startMovement != previousStartMovement)
             {
@@ -128,11 +115,7 @@ public class PlcController : MonoBehaviour
                 }
             }
 
-            if(moveForward && moveForward != previousMoveForward) {
-                conveyorBelt.MoveForward();
-            } else if (moveBackward && moveBackward != previousMoveBackward) {
-                conveyorBelt.MoveBackward();
-            }
+            conveyorBeltManager.checkMovement(moveForward, previousMoveForward, moveBackward, previousMoveBackward);
 
 
             if (horizontalPosition != previousHorizontalPosition)
@@ -163,7 +146,7 @@ public class PlcController : MonoBehaviour
         }
         catch (AdsErrorException adsEx)
         {
-            Debug.LogError("ADS Error: " + adsEx.ErrorCode);
+            // Debug.LogError("ADS Error: " + adsEx.ErrorCode);
         }
         catch (Exception ex)
         {
