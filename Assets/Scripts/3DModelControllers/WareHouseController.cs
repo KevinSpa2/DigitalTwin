@@ -83,8 +83,6 @@ public class WarehouseController : MonoBehaviour
         turm = GameObject.FindGameObjectsWithTag("turm")[0].transform;
         ausleger = GameObject.FindGameObjectsWithTag("ausleger")[0].transform;
         greifer = GameObject.FindGameObjectsWithTag("greifer")[0].transform;
-        this.isZMoving = false;
-        // this.isZMoving = true;
     }
 
     public void setHoldingItem(bool setItem)
