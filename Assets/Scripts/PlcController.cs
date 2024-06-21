@@ -77,6 +77,7 @@ public class PlcController : MonoBehaviour
 
     void Update()
     {
+        // Read all PLC data
         try
         {
             int horizontalPosition = (int)adsClient.ReadAny(horizontalPositionHandle, typeof(int));
@@ -91,6 +92,7 @@ public class PlcController : MonoBehaviour
 
             conveyorBeltManager.findBelt();
 
+            // Check if movement gets initiated in the PLC data
             if (startMovement != previousStartMovement)
             {
                 warehouseController.MoveTurmToTarget(horizontalPosition, () =>
@@ -103,6 +105,7 @@ public class PlcController : MonoBehaviour
             }
             else
             {
+                // Check if position values in PLC data are changed
                 if (horizontalPosition != previousHorizontalPosition || verticalPosition != previousVerticalPosition || startCantileverMovement != previousStartCantileverMovement)
                 {
                     warehouseController.MoveTurmToTarget(horizontalPosition, () =>
@@ -117,7 +120,7 @@ public class PlcController : MonoBehaviour
 
             conveyorBeltManager.checkMovement(moveForward, previousMoveForward, moveBackward, previousMoveBackward);
 
-
+            // Update all values
             if (horizontalPosition != previousHorizontalPosition)
             {                
                 previousHorizontalPosition = horizontalPosition;
@@ -166,11 +169,14 @@ public class PlcController : MonoBehaviour
         }
     }
 
-    public void SetNetId(string netId){
+    // Setters for PLC connection
+    public void SetNetId(string netId)
+    {
         this.netId = netId;
     }
 
-    public void SetPort(int port){
+    public void SetPort(int port)
+    {
         this.port = port;
     }
 }

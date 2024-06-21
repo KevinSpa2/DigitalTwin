@@ -31,13 +31,15 @@ public class ConfigurationManager : MonoBehaviour
     private List<GameObject> subModules, children, cameraFields;
     private GameObject selectedModel;
 
-    // THIS LIST IS SUPPOSED TO BE USED IN STATUSBARCONTROLLER
+    // This list gets used in StatusBarController.cs for dynamic submodule names
     public static List<string> components = new List<string>();
 
     public string savedNetId;
     public int savedPort;
 
-    public void Awake(){
+    // Preset texts in input fields for PLC connection
+    public void Awake()
+    {
         this.netIdField.text = "127.0.0.1.1.1";
         this.portField.text = "851";
     }
@@ -53,7 +55,8 @@ public class ConfigurationManager : MonoBehaviour
 
         // Find all children of the 3D model
         this.children = new List<GameObject>();
-        for(int i = 0; i < selectedModel.transform.childCount; i++){
+        for (int i = 0; i < selectedModel.transform.childCount; i++)
+        {
             GameObject child = selectedModel.transform.GetChild(i).gameObject;
             children.Add(child);
             components.Add(child.name);
@@ -63,7 +66,8 @@ public class ConfigurationManager : MonoBehaviour
         yPosition = STANDARD_Y_POSITION;
         this.subModules = new List<GameObject>();
         this.cameraFields = new List<GameObject>();
-        for(int i = 0; i < components.Count; i++){
+        for (int i = 0; i < components.Count; i++)
+        {
             GameObject subModule = Instantiate(subModuleFieldPrefab, new Vector3(1200, yPosition, 0), Quaternion.identity, subModuleParent);
             GameObject cameraField = Instantiate(cameraFieldPrefab, new Vector3(1000, yPosition - 10, 0), Quaternion.identity, cameraFieldParent);
             subModule.GetComponent<TMP_InputField>().text = components[i];
@@ -75,12 +79,15 @@ public class ConfigurationManager : MonoBehaviour
 
     // Save input in inputfields
     public void SaveSubModuleNames(){
-        for(int i = 0; i < selectedModel.transform.childCount; i++){
+        for (int i = 0; i < selectedModel.transform.childCount; i++)
+        {
             components[i] = subModules[i].GetComponent<TMP_InputField>().text;
         }
+
         StatusBarController.Instance.SetStatusBarNames();
 
-        for(int i = 0; i < cameraFields.Count; i++){
+        for (int i = 0; i < cameraFields.Count; i++)
+        {
             // The input fields of the camera of each submodule, each array has length 3 and contains x, y and z.
             TMP_InputField[] fields = cameraFields[i].GetComponentsInChildren<TMP_InputField>(true);
             Vector3 cameraPosition = new Vector3(float.Parse(fields[0].text), float.Parse(fields[1].text), float.Parse(fields[2].text));
@@ -90,35 +97,40 @@ public class ConfigurationManager : MonoBehaviour
     }
 
     // Reset the scene
-    private void Reset(){
+    private void Reset()
+    {
         yPosition = STANDARD_Y_POSITION;
 
         // Reset the 3D model
-        for(int i = 0; i < modelParent.transform.childCount; i++){
+        for (int i = 0; i < modelParent.transform.childCount; i++)
+        {
             Destroy(modelParent.transform.GetChild(i).gameObject);
-            // DOESNT DESTROY CONTAINERS
+            // Containers don't get destroyed
         }
 
         // Reset the input fields for submodules
-        for(int i = 0; i < subModuleParent.transform.childCount; i++){
+        for (int i = 0; i < subModuleParent.transform.childCount; i++)
+        {
             Destroy(subModuleParent.transform.GetChild(i).gameObject);
         }
 
         // Reset the input fields for camera's
-        for(int i = 0; i < cameraFieldParent.transform.childCount; i++){
+        for (int i = 0; i < cameraFieldParent.transform.childCount; i++)
+        {
             Destroy(cameraFieldParent.transform.GetChild(i).gameObject);
         }
 
         components.Clear();
     }
 
-    public void SetNetId(){
-        Debug.Log(netIdField.text);
+    // Setters for PLC connection
+    public void SetNetId()
+    {
         plcController.SetNetId(netIdField.text);
     }
 
-    public void SetPort(){
-        Debug.Log(portField.text);
+    public void SetPort()
+    {
         plcController.SetPort(int.Parse(portField.text));
     }
 

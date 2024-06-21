@@ -7,6 +7,7 @@ public class ConveyerBeltManager : MonoBehaviour
     public WarehouseController warehouseController;
     public ConveyorBeltMovement conveyorBelt;
     ConveyorBeltMovement[] conveyorBelts;
+
     public void startup() 
     {
         warehouseController = FindObjectOfType<WarehouseController>();
@@ -35,14 +36,14 @@ public class ConveyerBeltManager : MonoBehaviour
     public void checkMovement(bool moveForward, bool previousMoveForward, bool moveBackward, bool previousMoveBackward)
     {
         if (conveyorBelt != null) 
+        {
+            if (moveForward && moveForward != previousMoveForward) 
             {
-            if(moveForward && moveForward != previousMoveForward) 
-            {
-                    conveyorBelt.MoveForward();
+                conveyorBelt.MoveForward();
             }
             else if (moveBackward && moveBackward != previousMoveBackward) 
             {
-                    conveyorBelt.MoveBackward();
+                conveyorBelt.MoveBackward();
             }
         }
     }
@@ -50,7 +51,6 @@ public class ConveyerBeltManager : MonoBehaviour
     public void moveContainerForwards()
     {
         findBelt();
-        Debug.Log(conveyorBelt);
         if (conveyorBelt != null)
         {
             conveyorBelt.MoveForward();

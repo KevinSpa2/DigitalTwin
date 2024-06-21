@@ -42,7 +42,8 @@ public class StatusBarController : MonoBehaviour
     void Awake()
     {
         // Assign singleton
-        if (Instance == null){
+        if (Instance == null)
+        {
             Instance = this;
         }
 
@@ -53,7 +54,8 @@ public class StatusBarController : MonoBehaviour
         this.statusButtons = new List<StatusButton>();
         this.components = new List<string>();
 
-        if(components.Count == 0){
+        if (components.Count == 0)
+        {
             for (int i = 0; i < model.GetComponent<Transform>().childCount; i++)
             {
                 // We get the names from the 3D model
@@ -121,9 +123,11 @@ public class StatusBarController : MonoBehaviour
 
     }
 
-    public void SetStatusBarNames(){
+    public void SetStatusBarNames()
+    {
         components = ConfigurationManager.components;
-        for (int i = 0; i < components.Count; i++){
+        for (int i = 0; i < components.Count; i++)
+        {
             statusButtons[i].SetComponentName(components[i]);
         }
     }
