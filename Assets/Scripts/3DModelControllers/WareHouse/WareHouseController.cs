@@ -129,7 +129,7 @@ public class WarehouseController : MonoBehaviour
     {
         float zPosition;
 
-        // Check if moveInstruction is  numeric 
+        // Check if moveInstruction is numeric 
         if (moveZInstruction > 3 && moveZInstruction < 2200)
         {
             // If moveInstruction is a numeric value, clamp it in the range of 0 and 2200
