@@ -199,6 +199,7 @@ GameObject:
   - component: {fileID: 7578639013885956907}
   - component: {fileID: 8381042064085826898}
   - component: {fileID: 5310163421681414377}
+  - component: {fileID: 5624231297012075763}
   m_Layer: 5
   m_Name: Grijper status button
   m_TagString: Untagged
@@ -308,6 +309,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5624231297012075763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2742378043975472679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62a97a37b3f3dcb40a7f53b30006be46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameras: []
+  currentCameraIndex: 0
 --- !u!1 &5238667089567306953
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,9 +7,11 @@ using System;
 
 public class StatusButton : MonoBehaviour
 {
+    // Fields
     public Image statusButtonImage;
     public TMP_Text componentName, statusText;
 
+    // Constructor
     public StatusButton(Image statusButtonImage, string componentName, string statusText)
     {
         this.statusButtonImage = statusButtonImage;
@@ -17,6 +19,7 @@ public class StatusButton : MonoBehaviour
         this.statusText.text = statusText;
     }
 
+    // Getters & Setters
     public Image GetStatusButtonImage()
     {
         return this.statusButtonImage;
