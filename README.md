@@ -57,6 +57,14 @@ The 'DigitalTwinScene' in Unity is currently set up in a way which should make a
 - 'PLCInterface' is a GameObject that holds the scripts related to connecting the digital twin to the PLC.
 
 ### Current functionalities
+To learn about the complete descriptions of the current functionalities of the digital twin, we will redirect you towards the design document.
+
+- Receive and handle PLC-data for following the physical FTF
+- Controller in the GUI for independent control
+- Toggle to switch between follow-mode and independent control
+- Status bar for monitoring the activities of the digital twin
+- Camera controls for better viewing of the digital twin
+- Customizable configuration
 
 All functionalities have been tested using a virtual PLC. For learning how to set up a virtual PLC, we will redirect you towards your projectleader.
 
@@ -78,4 +86,8 @@ The digital twin has been set up for the high bay warehouse of the FTF. There ar
 Additionally, the PLC commands need to be added in the PLC code. For this we redirect you to your project leader.
 
 #### Modularity
-For modularity, the configuration screen has been created. Currently only the high bay warehouse can be selected here.
+For modularity, the configuration screen has been created. Currently only the high bay warehouse can be selected here. In a later project 3D-models for the other modules can be added.
+
+Currently only the names of the submodules and the camera positions are customizable. In a later project, there should also be options to add a Controller-script here, as well as a GUI controller for each specific module.
+
+It needs to be mentioned that customizing camera positions will create a camera for each submodule at the given position, but these cameras aren't connected to the submodule-buttons yet.
